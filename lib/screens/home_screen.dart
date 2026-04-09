@@ -172,6 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(height: 28),
 
                         // Избор врсте
+                        Row(
                           children: [
                             _PetToggle(
                               label: '🐕 Пас',
