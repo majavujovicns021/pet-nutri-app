@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     const SizedBox(height: 2),
                                     Text(
-                                      'Пронађи најбољу храну за љубимца',
+                                      'Pronadji najbolju hranu za ljubimca',
                                       style: GoogleFonts.inter(
                                         fontSize: 14,
                                         color: AppColors.textSecondary,
@@ -155,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 const SizedBox(width: 10),
                                 Text(
-                                  'Провера симптома',
+                                  'Provera simptoma',
                                   style: GoogleFonts.inter(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
@@ -175,14 +175,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         Row(
                           children: [
                             _PetToggle(
-                              label: '🐕 Пас',
+                              label: '🐕 Pas',
                               isSelected: _selectedPet == PetType.dog,
                               onTap: () =>
                                   setState(() => _selectedPet = PetType.dog),
                             ),
                             const SizedBox(width: 12),
                             _PetToggle(
-                              label: '🐈 Мачка',
+                              label: '🐈 Macka',
                               isSelected: _selectedPet == PetType.cat,
                               onTap: () =>
                                   setState(() => _selectedPet = PetType.cat),
@@ -195,7 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(height: 24),
 
                         Text(
-                          'Здравствена стања',
+                          'Zdravstvena stanja',
                           style: GoogleFonts.inter(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
@@ -207,7 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         const SizedBox(height: 6),
                         Text(
-                          'Изабери дијагнозу да видиш препоручену исхрану',
+                          'Izaberi dijagnozu da vidis preporucenu ishranu',
                           style: GoogleFonts.inter(
                             fontSize: 13,
                             color: AppColors.textMuted,

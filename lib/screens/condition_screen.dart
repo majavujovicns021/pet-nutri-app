@@ -43,7 +43,7 @@ class _ConditionScreenState extends State<ConditionScreen> {
       });
     } catch (e) {
       setState(() {
-        _error = 'Грешка при претрази. Провери интернет конекцију.';
+        _error = 'Greska pri pretrazi. Proveri internet konekciju.';
         _loading = false;
       });
     }
@@ -144,7 +144,7 @@ class _ConditionScreenState extends State<ConditionScreen> {
 
                       // Dietary guidelines
                       Text(
-                        'Дијететске смернице',
+                        'Dijetetske smernice',
                         style: GoogleFonts.inter(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -206,7 +206,7 @@ class _ConditionScreenState extends State<ConditionScreen> {
 
                       // Search section
                       Text(
-                        'Претражи храну',
+                        'Pretrazi hranu',
                         style: GoogleFonts.inter(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -215,7 +215,7 @@ class _ConditionScreenState extends State<ConditionScreen> {
                       ),
                       const SizedBox(height: 6),
                       Text(
-                        'Укуцај назив хране да видиш колико је погодна за ${c.name.toLowerCase()}',
+                        'Ukucaj naziv hrane da vidis koliko je pogodna za ${c.name.toLowerCase()}',
                         style: GoogleFonts.inter(
                           fontSize: 13,
                           color: AppColors.textMuted,
@@ -242,7 +242,7 @@ class _ConditionScreenState extends State<ConditionScreen> {
                                   fontSize: 15,
                                 ),
                                 decoration: InputDecoration(
-                  hintText: 'нпр. Royal Canin, Whiskas...',
+                  hintText: 'npr. Royal Canin, Whiskas...',
                                   hintStyle: GoogleFonts.inter(
                                     color: AppColors.textMuted,
                                   ),
@@ -318,7 +318,7 @@ class _ConditionScreenState extends State<ConditionScreen> {
                         Padding(
                           padding: const EdgeInsets.all(32),
                           child: Text(
-                            'Нема резултата. Пробај други назив.',
+                            'Nema rezultata. Probaj drugi naziv.',
                             textAlign: TextAlign.center,
                             style: GoogleFonts.inter(
                               color: AppColors.textMuted,
@@ -367,10 +367,10 @@ class _RecommendationBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final (color, label) = switch (recommendation) {
-      'high' => (AppColors.success, '↑ Висок'),
-      'moderate' => (AppColors.accent, '~ Умерен'),
-      'low' => (AppColors.warning, '↓ Низак'),
-      'avoid' => (AppColors.danger, '✕ Избегавај'),
+      'high' => (AppColors.success, '↑ Visok'),
+      'moderate' => (AppColors.accent, '~ Umeren'),
+      'low' => (AppColors.warning, '↓ Nizak'),
+      'avoid' => (AppColors.danger, '✕ Izbegavaj'),
       _ => (AppColors.textMuted, recommendation),
     };
 

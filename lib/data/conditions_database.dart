@@ -43,9 +43,6 @@ List<PetCondition> findConditionsBySymptoms(
     List<String> selectedSymptoms, PetType petType) {
   if (selectedSymptoms.isEmpty) return [];
 
-  final lowerSelected =
-      selectedSymptoms.map((s) => s.toLowerCase()).toList();
-
   final matches = <MapEntry<PetCondition, int>>[];
 
   for (final condition in conditionsDatabase) {
@@ -53,8 +50,7 @@ List<PetCondition> findConditionsBySymptoms(
 
     int matchCount = 0;
     for (final symptom in condition.symptoms) {
-      if (lowerSelected.any((s) => symptom.toLowerCase().contains(s) ||
-          s.contains(symptom.toLowerCase()))) {
+      if (selectedSymptoms.any((s) => symptom == s)) {
         matchCount++;
       }
     }

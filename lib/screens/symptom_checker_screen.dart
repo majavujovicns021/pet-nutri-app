@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../data/conditions_database.dart';
 import '../theme/app_theme.dart';
+import '../utils/text_utils.dart';
 import 'condition_screen.dart';
 
 class SymptomCheckerScreen extends StatefulWidget {
@@ -23,7 +24,7 @@ class _SymptomCheckerScreenState extends State<SymptomCheckerScreen> {
   List<String> get _filteredSymptoms {
     if (_searchQuery.isEmpty) return _allSymptoms;
     return _allSymptoms
-        .where((s) => s.toLowerCase().contains(_searchQuery.toLowerCase()))
+        .where((s) => containsNormalized(s, _searchQuery))
         .toList();
   }
 
@@ -80,7 +81,6 @@ class _SymptomCheckerScreenState extends State<SymptomCheckerScreen> {
           SafeArea(
             child: Column(
               children: [
-                // Gornja traka
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 16,
@@ -102,7 +102,7 @@ class _SymptomCheckerScreenState extends State<SymptomCheckerScreen> {
                       ),
                       const SizedBox(width: 12),
                       Text(
-                        '🔍 Провера симптома',
+                        'Provera simptoma',
                         style: GoogleFonts.inter(
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
@@ -112,7 +112,6 @@ class _SymptomCheckerScreenState extends State<SymptomCheckerScreen> {
                     ],
                   ),
                 ),
-
                 Expanded(
                   child: ListView(
                     physics: const BouncingScrollPhysics(),
@@ -120,36 +119,30 @@ class _SymptomCheckerScreenState extends State<SymptomCheckerScreen> {
                     children: [
                       const SizedBox(height: 8),
                       Text(
-                        'Означи симптоме које примећујеш код свог љубимца, а ми ћемо ти предложити могућа стања.',
+                        'Oznaci simptome koje primecujes kod svog ljubimca, a mi cemo ti predloziti moguca stanja.',
                         style: GoogleFonts.inter(
                           fontSize: 14,
                           color: AppColors.textSecondary,
                           height: 1.5,
                         ),
                       ).animate().fadeIn(duration: 400.ms),
-
                       const SizedBox(height: 16),
-
-                      // Избор врсте
                       Row(
                         children: [
                           _PetChip(
-                            label: '🐕 Пас',
+                            label: '🐕 Pas',
                             isSelected: _selectedPet == PetType.dog,
                             onTap: () => _changePetType(PetType.dog),
                           ),
                           const SizedBox(width: 12),
                           _PetChip(
-                            label: '🐈 Мачка',
+                            label: '🐈 Macka',
                             isSelected: _selectedPet == PetType.cat,
                             onTap: () => _changePetType(PetType.cat),
                           ),
                         ],
                       ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
-
                       const SizedBox(height: 20),
-
-                      // Претрага симптома
                       Container(
                         decoration: BoxDecoration(
                           color: AppColors.card,
@@ -162,7 +155,7 @@ class _SymptomCheckerScreenState extends State<SymptomCheckerScreen> {
                             fontSize: 15,
                           ),
                           decoration: InputDecoration(
-                            hintText: 'Претражи симптоме...',
+                            hintText: 'Pretrazi simptome...',
                             hintStyle: GoogleFonts.inter(
                               color: AppColors.textMuted,
                             ),
@@ -179,13 +172,10 @@ class _SymptomCheckerScreenState extends State<SymptomCheckerScreen> {
                           onChanged: (v) => setState(() => _searchQuery = v),
                         ),
                       ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
-
                       const SizedBox(height: 16),
-
-                      // Изабрани симптоми
                       if (_selectedSymptoms.isNotEmpty) ...[
                         Text(
-                          'Изабрани симптоми (${_selectedSymptoms.length}):',
+                          'Izabrani simptomi (${_selectedSymptoms.length}):',
                           style: GoogleFonts.inter(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -236,10 +226,8 @@ class _SymptomCheckerScreenState extends State<SymptomCheckerScreen> {
                         ),
                         const SizedBox(height: 16),
                       ],
-
-                      // Листа симптома
                       Text(
-                        'Сви симптоми:',
+                        'Svi simptomi:',
                         style: GoogleFonts.inter(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
@@ -290,8 +278,6 @@ class _SymptomCheckerScreenState extends State<SymptomCheckerScreen> {
                           ),
                         );
                       }),
-
-                      // Резултати
                       if (_results.isNotEmpty) ...[
                         const SizedBox(height: 24),
                         Container(
@@ -309,7 +295,7 @@ class _SymptomCheckerScreenState extends State<SymptomCheckerScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                '💡 Могућа стања:',
+                                '💡 Moguca stanja:',
                                 style: GoogleFonts.inter(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w700,
@@ -318,7 +304,7 @@ class _SymptomCheckerScreenState extends State<SymptomCheckerScreen> {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                'На основу изабраних симптома',
+                                'Na osnovu izabranih simptoma',
                                 style: GoogleFonts.inter(
                                   fontSize: 12,
                                   color: AppColors.textMuted,
@@ -331,9 +317,7 @@ class _SymptomCheckerScreenState extends State<SymptomCheckerScreen> {
                         ..._results.asMap().entries.map((entry) {
                           final condition = entry.value;
                           final matchCount = condition.symptoms
-                              .where((s) => _selectedSymptoms.any((sel) =>
-                                  s.toLowerCase().contains(sel.toLowerCase()) ||
-                                  sel.toLowerCase().contains(s.toLowerCase())))
+                              .where((s) => _selectedSymptoms.contains(s))
                               .length;
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 10),
@@ -383,7 +367,7 @@ class _SymptomCheckerScreenState extends State<SymptomCheckerScreen> {
                                           ),
                                           const SizedBox(height: 4),
                                           Text(
-                                            'Поклапање: $matchCount/${condition.symptoms.length} симптома',
+                                            'Poklapanje: $matchCount/${condition.symptoms.length} simptoma',
                                             style: GoogleFonts.inter(
                                               fontSize: 12,
                                               color: AppColors.accent,
@@ -412,7 +396,6 @@ class _SymptomCheckerScreenState extends State<SymptomCheckerScreen> {
                               .slideY(begin: 0.1, end: 0);
                         }),
                       ],
-
                       const SizedBox(height: 32),
                     ],
                   ),
