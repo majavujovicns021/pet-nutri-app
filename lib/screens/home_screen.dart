@@ -99,43 +99,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             .fadeIn(duration: 500.ms)
                             .slideY(begin: -0.15, end: 0),
 
-                        const SizedBox(height: 28),
-
-                        // Search bar
-                        GestureDetector(
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => const SearchScreen(),
-                            ),
-                          ),
-                          child: GlassCard(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 14,
-                            ),
-                            child: Row(
-                              children: [
-                                const Icon(
-                                  Icons.search_rounded,
-                                  color: AppColors.textMuted,
-                                  size: 22,
-                                ),
-                                const SizedBox(width: 12),
-                                Text(
-                                  'Pretraži hranu za ljubimce...',
-                                  style: GoogleFonts.inter(
-                                    color: AppColors.textMuted,
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                            .animate()
-                            .fadeIn(delay: 200.ms, duration: 400.ms),
-
                         const SizedBox(height: 20),
 
                         // Banner
