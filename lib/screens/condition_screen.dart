@@ -666,8 +666,11 @@ class _FoodResultCard extends StatelessWidget {
                   label: 'Pet Centar',
                   color: const Color(0xFFE65100),
                   onTap: () {
-                    final q = Uri.encodeComponent(product.brand);
-                    html.window.open('https://www.petcentar.rs/pretraga?q=$q', '_blank');
+                    final brand = product.brand;
+                    final q = (brand.isNotEmpty && brand != 'Nepoznat brend')
+                        ? Uri.encodeComponent(brand)
+                        : '';
+                    html.window.open('https://www.petcentar.rs/search?q=$q', '_blank');
                   },
                 ),
                 const SizedBox(width: 8),
@@ -675,26 +678,35 @@ class _FoodResultCard extends StatelessWidget {
                   label: 'Zoo City',
                   color: const Color(0xFF2E7D32),
                   onTap: () {
-                    final q = Uri.encodeComponent(product.brand);
-                    html.window.open('https://www.zoocity.rs/search?q=$q', '_blank');
+                    final brand = product.brand;
+                    final q = (brand.isNotEmpty && brand != 'Nepoznat brend')
+                        ? Uri.encodeComponent(brand)
+                        : '';
+                    html.window.open('https://zoocity.rs/pretraga?trazeni_pojam=$q', '_blank');
                   },
                 ),
                 const SizedBox(width: 8),
                 _ShopButton(
-                  label: 'Maxi Zoo',
+                  label: 'Petshop',
                   color: const Color(0xFF1565C0),
                   onTap: () {
-                    final q = Uri.encodeComponent(product.brand);
-                    html.window.open('https://www.maxizoo.rs/search/?q=$q', '_blank');
+                    final brand = product.brand;
+                    final q = (brand.isNotEmpty && brand != 'Nepoznat brend')
+                        ? Uri.encodeComponent(brand)
+                        : '';
+                    html.window.open('https://www.petshop.rs/search?q=$q', '_blank');
                   },
                 ),
                 const SizedBox(width: 8),
                 _ShopButton(
-                  label: 'ePet Shop',
+                  label: 'Google',
                   color: const Color(0xFF6A1B9A),
                   onTap: () {
-                    final q = Uri.encodeComponent(product.brand);
-                    html.window.open('https://www.epetshop.rs/search?q=$q', '_blank');
+                    final brand = product.brand;
+                    final q = (brand.isNotEmpty && brand != 'Nepoznat brend')
+                        ? Uri.encodeComponent('$brand hrana za ljubimce kupovina srbija')
+                        : Uri.encodeComponent('hrana za ljubimce kupovina srbija');
+                    html.window.open('https://www.google.com/search?q=$q', '_blank');
                   },
                 ),
               ],
