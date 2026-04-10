@@ -32,44 +32,79 @@
   <title>PetNutri</title>
   <link rel="manifest" href="manifest.json">
   <style>
-    /* Google Translate dugme - pozicionirano gore desno */
-    #google_translate_element {
+    /* Custom translate dugme */
+    #lang-toggle {
       position: fixed;
-      top: 12px;
-      right: 12px;
+      top: 14px;
+      right: 14px;
       z-index: 9999;
       background: rgba(255,255,255,0.95);
       border-radius: 12px;
-      padding: 4px 8px;
+      padding: 8px 16px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      cursor: pointer;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.15s;
     }
-    /* Sakrij Google branding */
-    .goog-te-gadget-simple {
-      background: transparent !important;
-      border: none !important;
-      font-size: 13px !important;
-    }
-    .goog-te-gadget-simple .goog-te-menu-value span {
-      color: #333 !important;
-    }
-    /* Sakrij Google Translate banner na vrhu */
-    .skiptranslate {
-      display: none !important;
-    }
+    #lang-toggle:hover { transform: scale(1.05); }
+    #lang-toggle:active { transform: scale(0.97); }
+    /* Sakrij Google Translate UI */
+    .goog-te-gadget, .skiptranslate, .goog-te-banner-frame { display: none !important; }
     body { top: 0 !important; }
   </style>
 </head>
 <body>
-  <div id="google_translate_element"></div>
+  <button id="lang-toggle" onclick="toggleLanguage()">🌐 English</button>
+  <div id="google_translate_element" style="display:none"></div>
   <script src="flutter_bootstrap.js" async></script>
   <script>
+    var currentLang = 'sr';
+
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'sr',
         includedLanguages: 'sr,en',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
         autoDisplay: false
       }, 'google_translate_element');
+    }
+
+    function toggleLanguage() {
+      var btn = document.getElementById('lang-toggle');
+      if (currentLang === 'sr') {
+        // Prebaci na engleski
+        var frame = document.querySelector('.goog-te-menu-frame');
+        if (frame) {
+          var items = frame.contentDocument.querySelectorAll('.goog-te-menu2-item span.text');
+          items.forEach(function(item) {
+            if (item.textContent === 'English') item.click();
+          });
+        } else {
+          // Fallback: postavi cookie direktno
+          document.cookie = "googtrans=/sr/en; path=/";
+          document.cookie = "googtrans=/sr/en; path=/; domain=.github.io";
+          location.reload();
+        }
+        btn.textContent = '🌐 Srpski';
+        currentLang = 'en';
+      } else {
+        // Vrati na srpski
+        document.cookie = "googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        document.cookie = "googtrans=; path=/; domain=.github.io; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        location.reload();
+      }
+    }
+
+    // Proveri da li je vec na engleskom
+    if (document.cookie.indexOf('googtrans=/sr/en') !== -1) {
+      currentLang = 'en';
+      document.getElementById('lang-toggle').textContent = '🌐 Srpski';
     }
   </script>
   <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
