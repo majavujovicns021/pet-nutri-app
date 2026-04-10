@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../data/conditions_database.dart';
 import '../services/food_scorer.dart';
 import '../services/pet_food_api.dart';
@@ -251,7 +252,8 @@ class _ConditionScreenState extends State<ConditionScreen> {
 
                       const SizedBox(height: 24),
 
-                      // Search section
+                      // Search section - only for dogs and cats
+                      if (c.affectedSpecies.contains(PetType.dog) || c.affectedSpecies.contains(PetType.cat)) ...[
                       Text(
                         'Pretrazi hranu',
                         style: GoogleFonts.inter(
@@ -393,6 +395,7 @@ class _ConditionScreenState extends State<ConditionScreen> {
                               )
                               .slideY(begin: 0.05, end: 0);
                         })),
+                      ], // end search section if
 
                       const SizedBox(height: 32),
                     ],
@@ -453,7 +456,14 @@ class _FoodResultCard extends StatelessWidget {
     final fs = foodScore;
     final product = fs.product;
 
-    return GlassCard(
+    return GestureDetector(
+      onTap: () async {
+        final url = Uri.parse(product.productUrl);
+        if (await canLaunchUrl(url)) {
+          await launchUrl(url, mode: LaunchMode.externalApplication);
+        }
+      },
+      child: GlassCard(
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -597,6 +607,7 @@ class _FoodResultCard extends StatelessWidget {
                 ),
           ],
         ],
+      ),
       ),
     );
   }

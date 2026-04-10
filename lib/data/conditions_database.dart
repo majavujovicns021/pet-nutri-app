@@ -1,6 +1,6 @@
 /// Veterinarski dijetetski vodici za cesta stanja kod kucnih ljubimaca.
 
-enum PetType { dog, cat, poultry, pigeon, parrot }
+enum PetType { dog, cat, poultry, pigeon, parrot, fish }
 
 String petTypeLabel(PetType type) {
   switch (type) {
@@ -9,6 +9,7 @@ String petTypeLabel(PetType type) {
     case PetType.poultry: return '🐔 Zivina';
     case PetType.pigeon: return '🕊️ Golub';
     case PetType.parrot: return '🦜 Papagaj';
+    case PetType.fish: return '🐟 Ribice';
   }
 }
 
@@ -690,5 +691,102 @@ const List<PetCondition> conditionsDatabase = [
     goodIngredients: ['pelet', 'svezo povrce', 'voce', 'vitamin e', 'brokoli'],
     badIngredients: ['seme suncokreta', 'kikiriki', 'masno seme', 'secer'],
     treatment: 'Lecenje masne jetre kod papagaja zahteva drasticnu promenu ishrane — potpuno uklanjanje masnog semena (suncokret, kikiriki, konoplja) i prelazak na kvalitetni niskomasni pelet sa svezim povrcem i umerenom kolicinom voca. Laktuloza se daje oralno za smanjenje nivoa amonijaka u krvi i rasterecenje jetre. Silimarin (ekstrakt sikavice) i S-adenozilmetionin (SAMe) su hepatoprotektori koji pomazu u regeneraciji celija jetre. Vitamin E i selen se dodaju kao antioksidansi za zastitu hepatocita od oksidativnog ostecenja. Podsticanje fizicke aktivnosti (letenje u sobi, vece prostorije, igracke) je neophodno za sagorevanje viska masti. Kod teskih slucajeva sa anoreksijom, veterinar primenjuje asistiranu ishranu sondom i infuzionu terapiju. Obavezno posetite avijarnnog veterinara za krvne analize (zucne kiseline, AST, holesterol) i ultrazvuk jetre radi procene stepena ostecenja i pracenja oporavka.',
+  ),
+  // ==================== RIBICE ====================
+  PetCondition(
+    id: 'ich',
+    name: 'Ihtioftirioza (Ich / Bela tackasta bolest)',
+    description: 'Ihtioftirioza je najcesca parazitska bolest akvarijumskih riba izazvana protozoom Ichthyophthirius multifiliis. Parazit se uvlaci pod kozu ribe i formira karakteristicne bele tackice velicine zrna soli po celom telu i perajima. Bolest je visoko kontagiozna i moze biti fatalna ako se ne leci, narocito kod mladih i stresiranih riba.',
+    affectedSpecies: [PetType.fish],
+    icon: '⚪',
+    symptoms: ['Bele tackice po telu i perajima', 'Trljanje o predmete (flashing)', 'Ubrzano disanje', 'Stiskanje peraja uz telo', 'Gubitak apetita', 'Letargija', 'Plutanje na povrsini', 'Gubitak boje'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Vitamin C', recommendation: 'high', reason: 'Jaca imuni sistem riba.'),
+      DietaryGuideline(nutrient: 'Proteini', recommendation: 'high', reason: 'Podrzava oporavak organizma.'),
+      DietaryGuideline(nutrient: 'Cesnak', recommendation: 'moderate', reason: 'Beli luk ima antiparazitsko dejstvo.'),
+    ],
+    goodIngredients: ['vitamin c', 'beli luk', 'visokoproteinska hrana', 'spirulina'],
+    badIngredients: ['niskokvalitetna hrana', 'stara hrana'],
+    treatment: 'Lecenje ich-a zahteva povecanje temperature vode za 2-3°C (do maksimalno 30°C) jer se time ubrzava zivotni ciklus parazita i cini ga osetljivim na lekove. So (natrijum-hlorid) u dozi od 1-3 g/L je efikasna za blaze slucajeve i bezbedna za vecinu riba. Malachite green (malahit zeleno) u kombinaciji sa formalinom je klasicni lek za ich i dodaje se u vodu prema uputstvu. Metilen plavo se koristi kao alternativa, narocito kod osetljivih vrsta. Lekovi na bazi bakra (bakar-sulfat) su efikasni ali toksinni za beskicmenjake i biljke. Tokom lecenja, pojacati aeraciju jer lekovi smanjuju nivo kiseonika u vodi. Obavezno ukloniti aktivni ugalj iz filtera jer apsorbuje lekove. Prevencija ukljucuje karantin novih riba minimum 2 nedelje, odrzavanje stabilne temperature i izbegavanje stresa.',
+  ),
+  PetCondition(
+    id: 'fin_rot',
+    name: 'Truljenje peraja (Fin Rot)',
+    description: 'Truljenje peraja je bakterijska infekcija izazvana najcesce bakterijama Aeromonas, Pseudomonas ili Flavobacterium koje razaraju tkivo peraja od ivica ka bazi. Bolest je obicno sekundarna — nastaje usled loseg kvaliteta vode, stresa, prenapucenosti akvarijuma ili povreda peraja. Ako se ne leci, infekcija moze napredovati do tela ribe i postati fatalna.',
+    affectedSpecies: [PetType.fish],
+    icon: '🩹',
+    symptoms: ['Razderani ili iskrzani rubovi peraja', 'Belo ili crvenkasto obojenje ivica peraja', 'Skracivanje peraja', 'Crvenilo na bazi peraja', 'Letargija', 'Gubitak apetita', 'Plutanje na mestu', 'Belo zamucenje na perajima'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Vitamin C', recommendation: 'high', reason: 'Podrzava zarastanje tkiva.'),
+      DietaryGuideline(nutrient: 'Proteini', recommendation: 'high', reason: 'Potrebni za regeneraciju peraja.'),
+      DietaryGuideline(nutrient: 'Omega-3', recommendation: 'high', reason: 'Antiinflamatorno dejstvo.'),
+    ],
+    goodIngredients: ['vitamin c', 'spirulina', 'visokoproteinska hrana', 'beli luk'],
+    badIngredients: ['niskokvalitetna hrana', 'prekomerno hranjenje'],
+    treatment: 'Lecenje truljenja peraja pocinje poboljsanjem kvaliteta vode — parcijalna zamena 25-50% vode, ciscenje filtera i testiranje parametara (amonijak, nitriti, pH). Antibakterijski lekovi poput Kanamicina, Eritromicina ili Trimetoprim-sulfa se dodaju u vodu ili hranu. API Melafix (ekstrakt cajnog drveta) je blazi prirodni antibakterijski preparat za pocetne stadijume. So u dozi od 1-2 g/L pomaze u blagim slucajevima i smanjuje osmotski stres na osteceno tkivo. Metilen plavo se koristi kao antiseptik za prevenciju sekundarnih gljivicnih infekcija na ostecenim perajima. Izolacija obolele ribe u bolnicki akvarijum je preporucljiva za ciljano lecenje. Peraja ce ponovo izrasti ako je baza peraja neostecena, ali oporavak moze trajati nekoliko nedelja. Prevencija ukljucuje redovnu zamenu vode, izbegavanje prenapucenosti i odrzavanje stabilnih parametara vode.',
+  ),
+  PetCondition(
+    id: 'dropsy',
+    name: 'Vodena bolest (Dropsy)',
+    description: 'Vodena bolest (ascites) je stanje kod riba karakterisano nakupljanjem tecnosti u telesnoj duplji sto izaziva karakteristicno naduvavanje tela i ispupcenje ljuski (izgled borove sisarke). Nije zasebna bolest vec simptom ozbiljnog unutrasnjeg problema — najcesce bakterijske infekcije bubrega (Aeromonas), otkazivanja jetre ili virusne infekcije. Prognoza je obicno losa jer se simptomi javljaju tek u naprednom stadijumu bolesti.',
+    affectedSpecies: [PetType.fish],
+    icon: '💧',
+    symptoms: ['Naduvano telo', 'Ispupcene ljuske (izgled borove sisarke)', 'Ispupcene oci', 'Gubitak apetita', 'Letargija', 'Bleda boja', 'Ubrzano disanje', 'Crvenkast ili belikast izmet'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Proteini', recommendation: 'moderate', reason: 'Lako svarljivi proteini za smanjenje opterecenja bubrega.'),
+      DietaryGuideline(nutrient: 'Vitamin C', recommendation: 'high', reason: 'Podrzava imuni sistem.'),
+      DietaryGuideline(nutrient: 'Cesnak', recommendation: 'high', reason: 'Antibakterijsko dejstvo.'),
+    ],
+    goodIngredients: ['beli luk', 'vitamin c', 'spirulina', 'dafnija'],
+    badIngredients: ['prekomerna hrana', 'niskokvalitetna hrana'],
+    treatment: 'Lecenje vodene bolesti je tesko i cesto neuspesno jer se simptomi javljaju u kasnom stadijumu. Izolacija obolele ribe u bolnicki akvarijum sa cistom vodom je prvi korak. Epsom so (magnezijum-sulfat) u dozi od 1-3 g/L pomaze u izvlacenju viska tecnosti iz tela ribe osmotskim putem. Antibiotici poput Kanamicina ili kombinacije Metronidazola i Kanamicina se dodaju u vodu za borbu protiv bakterijske infekcije. Hrana natopljena antibiotikom (Kanamicin u hrani) je efikasnija od lecenja kroz vodu jer lek direktno dolazi do creva. Temperatura vode se odrzava stabilnom, a aeracija se pojacava. Prevencija je kljucna — redovna zamena vode (20-30% nedeljno), izbegavanje prenapucenosti, kvalitetna ishrana i karantin novih riba. Obavezno testirajte parametre vode (amonijak, nitriti, nitrati, pH) jer los kvalitet vode je najcesci predisponirajuci faktor.',
+  ),
+  PetCondition(
+    id: 'swim_bladder',
+    name: 'Poremecaj plivaceg mehura',
+    description: 'Poremecaj plivaceg mehura je stanje kod riba koje utice na sposobnost kontrole plovnosti — riba moze plutati na povrsini, tonuti na dno ili plivati na stranu/naopako. Najcesci uzroci su prejedanje, zatvor, bakterijska infekcija plivaceg mehura, urodjene deformacije ili pritisak uvecanih organa. Narocito je cest kod zlatnih ribica i beta riba zbog njihove kompaktne gradje tela.',
+    affectedSpecies: [PetType.fish],
+    icon: '🎈',
+    symptoms: ['Plutanje na povrsini', 'Tonjenje na dno', 'Plivanje na stranu ili naopako', 'Otezano odrzavanje ravnoteze', 'Nadut stomak', 'Gubitak apetita', 'Savijeno telo', 'Letargija'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Vlakna', recommendation: 'high', reason: 'Pomaze probavi i sprecava zatvor.'),
+      DietaryGuideline(nutrient: 'Proteini', recommendation: 'moderate', reason: 'Lako svarljivi proteini.'),
+      DietaryGuideline(nutrient: 'Porcije', recommendation: 'low', reason: 'Manje porcije sprecavaju prejedanje.'),
+    ],
+    goodIngredients: ['oljusten grasak (kuvan)', 'dafnija', 'spirulina', 'vlakna'],
+    badIngredients: ['suva hrana (bez potapanja)', 'prekomerno hranjenje', 'liofilizirana hrana'],
+    treatment: 'Lecenje poremecaja plivaceg mehura zavisi od uzroka. Kod prejedanja ili zatvora, post od 24-48 sati pracen hranjenjem olustenim kuvanim graskom (vlakna pomazu ciscenju creva) je cesto dovoljan. Temperatura vode se blago povecava za 1-2°C za ubrzavanje metabolizma. Epsom so (magnezijum-sulfat) u dozi od 1 g/L deluje kao blagi laksativ i smanjuje otok. Kod bakterijske infekcije plivaceg mehura, antibiotici poput Kanamicina ili Eritromicina se dodaju u vodu. Smanjenje nivoa vode u akvarijumu olaksava ribi da dodje do hrane i povrsine. Prelazak na potopljenu hranu (namociti suvu hranu pre davanja) sprecava gutanje vazduha koje pogorsava problem. Prevencija ukljucuje hranjenje u malim porcijama 2-3 puta dnevno umesto jednog velikog obroka, raznovrsnu ishranu i izbegavanje suve hrane koja se siri u zelucu.',
+  ),
+  PetCondition(
+    id: 'velvet_disease',
+    name: 'Barstunasta bolest (Velvet)',
+    description: 'Barstunasta bolest je parazitska infekcija izazvana dinoflagellatom Piscinoodinium (slatkovodne ribe) ili Amyloodinium (morske ribe) koji se pricvrscuje za kozu i skrge riba. Parazit formira sitne zlatno-smede tackice koje daju kozi izgled barsuna ili fine prasine. Bolest je visoko kontagiozna i moze biti fatalnija od ich-a jer cesto napada skrge i otezava disanje pre nego sto se primete vidljivi simptomi na kozi.',
+    affectedSpecies: [PetType.fish],
+    icon: '✨',
+    symptoms: ['Zlatno-smede tackice po telu (izgled barsuna)', 'Trljanje o predmete', 'Ubrzano disanje', 'Stiskanje peraja uz telo', 'Gubitak boje', 'Gubitak apetita', 'Letargija', 'Ljustenje koze'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Vitamin C', recommendation: 'high', reason: 'Jaca imuni odgovor.'),
+      DietaryGuideline(nutrient: 'Proteini', recommendation: 'high', reason: 'Podrzava oporavak.'),
+      DietaryGuideline(nutrient: 'Cesnak', recommendation: 'moderate', reason: 'Antiparazitsko dejstvo.'),
+    ],
+    goodIngredients: ['vitamin c', 'beli luk', 'spirulina', 'visokoproteinska hrana'],
+    badIngredients: ['niskokvalitetna hrana'],
+    treatment: 'Lecenje barstunaste bolesti zahteva zatamnjivanje akvarijuma jer je parazit fotosintetski organizam i svetlost mu je potrebna za prezivljavanje. Bakar-sulfat je najefikasniji lek ali je toksinnan za beskicmenjake, biljke i osetljive vrste riba — doza se pazljivo meri test kitom za bakar. Formalin u kombinaciji sa malahit zelenim je alternativa za slatkovodne ribe. Povecanje temperature na 28-30°C ubrzava zivotni ciklus parazita i skracuje trajanje lecenja. So u dozi od 2-3 g/L pomaze kod slatkovodnih riba. Tokom lecenja, pojacati aeraciju jer lekovi i povisena temperatura smanjuju nivo kiseonika. Ukloniti aktivni ugalj iz filtera. Prevencija ukljucuje karantin novih riba, odrzavanje kvaliteta vode i izbegavanje stresa.',
+  ),
+  PetCondition(
+    id: 'columnaris',
+    name: 'Kolumnaroza (Mouth Fungus)',
+    description: 'Kolumnaroza je bakterijska infekcija izazvana Flavobacterium columnare koja se cesto pogresno naziva gljivicnom infekcijom jer formira belicaste pamucaste naslage na ustima, telu i skrgama riba. Bakterija je oportunisticka i napada ribe sa oslabljenim imunim sistemom usled stresa, loseg kvaliteta vode ili povreda. Bolest moze biti akutna (smrt u roku od 24-48 sati) ili hronicna sa sporijim napredovanjem.',
+    affectedSpecies: [PetType.fish],
+    icon: '🦠',
+    symptoms: ['Belicaste naslage na ustima', 'Pamucaste mrlje na telu', 'Erozija koze', 'Ostecenje skrga', 'Ubrzano disanje', 'Gubitak apetita', 'Letargija', 'Razderani peraji'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Vitamin C', recommendation: 'high', reason: 'Podrzava imuni sistem i zarastanje.'),
+      DietaryGuideline(nutrient: 'Proteini', recommendation: 'high', reason: 'Potrebni za oporavak tkiva.'),
+      DietaryGuideline(nutrient: 'Cesnak', recommendation: 'moderate', reason: 'Prirodno antibakterijsko dejstvo.'),
+    ],
+    goodIngredients: ['vitamin c', 'beli luk', 'spirulina', 'kvalitetna hrana'],
+    badIngredients: ['niskokvalitetna hrana', 'prekomerno hranjenje'],
+    treatment: 'Lecenje kolumnaroze zahteva brzu reakciju jer akutni oblik moze biti fatalan u roku od 1-2 dana. Kanamicin ili Nitrofurazon (Furan-2) su antibiotici prvog izbora koji se dodaju u vodu. Oxytetracycline se moze koristiti kao alternativa. Snizavanje temperature vode za 2-3°C usporava razmnozavanje bakterije (suprotno od lecenja ich-a). So u dozi od 1-2 g/L pomaze u smanjenju osmotskog stresa. Metilen plavo se koristi za prevenciju sekundarnih infekcija. Poboljsanje kvaliteta vode je kljucno — parcijalna zamena vode, ciscenje filtera i testiranje parametara. Izolacija obolele ribe u bolnicki akvarijum je preporucljiva. Prevencija ukljucuje odrzavanje stabilnih parametara vode, izbegavanje prenapucenosti i stresa, i karantin novih riba.',
   ),
 ];

@@ -18,6 +18,9 @@ class PetFoodProduct {
     required this.barcode,
   });
 
+  /// URL ka stranici proizvoda na Open Pet Food Facts
+  String get productUrl => 'https://world.openpetfoodfacts.org/product/$barcode';
+
   factory PetFoodProduct.fromJson(Map<String, dynamic> json) {
     return PetFoodProduct(
       name: json['product_name'] ?? json['product_name_en'] ?? 'Nepoznat proizvod',
