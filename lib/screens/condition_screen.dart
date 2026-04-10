@@ -167,14 +167,14 @@ class _ConditionScreenState extends State<ConditionScreen> {
                           padding: const EdgeInsets.only(bottom: 10),
                           child: GlassCard(
                             padding: const EdgeInsets.all(14),
-                            child: Row(children: [
-                              _RecommendationBadge(g.recommendation, l),
-                              const SizedBox(width: 12),
-                              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                Text(g.nutrient, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
-                                const SizedBox(height: 2),
-                                Text(g.reason, style: GoogleFonts.inter(fontSize: 12, color: AppColors.textMuted, height: 1.3)),
-                              ])),
+                            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                              Row(children: [
+                                _RecommendationBadge(g.recommendation, l),
+                                const SizedBox(width: 10),
+                                Expanded(child: Text(g.nutrient, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.textPrimary))),
+                              ]),
+                              const SizedBox(height: 8),
+                              Text(g.reason, style: GoogleFonts.inter(fontSize: 12, color: AppColors.textMuted, height: 1.3)),
                             ]),
                           ),
                         ).animate().fadeIn(delay: Duration(milliseconds: 200 + entry.key * 80), duration: 400.ms);
