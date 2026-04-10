@@ -653,7 +653,6 @@ class _FoodResultCard extends StatelessWidget {
                   ),
                 ),
           ],
-        ],
 
           // Gde kupiti - shop linkovi
           const SizedBox(height: 12),
@@ -701,6 +700,7 @@ class _FoodResultCard extends StatelessWidget {
               ],
             ),
           ),
+        ],
       ),
       ),
     );
