@@ -97,28 +97,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         const SizedBox(height: 20),
 
-                        // Pretraga prodavnica sekcija
-                        Text(l.shopSearch,
-                          style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
-                        ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
-                        const SizedBox(height: 10),
-                        _ScrollableShopRow(
-                          children: [
-                            _ShopLink(label: 'Pet Centar', color: const Color(0xFFE65100),
-                              onTap: () => html.window.open('https://www.pet-centar.rs/products/', '_blank')),
-                            const SizedBox(width: 10),
-                            _ShopLink(label: 'PetSpot', color: const Color(0xFF2E7D32),
-                              onTap: () => html.window.open('https://petspot.rs/catalogsearch/result/?q=', '_blank')),
-                            const SizedBox(width: 10),
-                            _ShopLink(label: 'Premium Pet', color: const Color(0xFF1565C0),
-                              onTap: () => html.window.open('https://www.premiumpet.rs/', '_blank')),
-                            const SizedBox(width: 10),
-                            _ShopLink(label: 'Ananas', color: const Color(0xFF6A1B9A),
-                              onTap: () => html.window.open('https://ananas.rs/search?query=hrana+za+ljubimce', '_blank')),
-                          ],
-                        ).animate().fadeIn(delay: 220.ms, duration: 400.ms),
+                        // Pretraga prodavnica dugme
+                        _ShopSearchButton(l: l),
 
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 12),
+
+                        // Find a vet button
+                        _FindVetButton(l: l),
+
+                        const SizedBox(height: 12),
+
                         // Provera simptoma dugme
                         GestureDetector(
                           onTap: () => Navigator.push(context,
@@ -142,11 +130,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ).animate().fadeIn(delay: 250.ms, duration: 400.ms),
-
-                        const SizedBox(height: 12),
-
-                        // Find a vet button
-                        _FindVetButton(l: l),
 
                         const SizedBox(height: 24),
 
@@ -344,6 +327,110 @@ class _ShopLink extends StatelessWidget {
             Text(label, style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: color)),
             const SizedBox(width: 4),
             Icon(Icons.open_in_new_rounded, color: color.withOpacity(0.6), size: 14),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ShopSearchButton extends StatefulWidget {
+  final AppLocalizations l;
+  const _ShopSearchButton({required this.l});
+  @override
+  State<_ShopSearchButton> createState() => _ShopSearchButtonState();
+}
+
+class _ShopSearchButtonState extends State<_ShopSearchButton> {
+  bool _expanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = widget.l;
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () => setState(() => _expanded = !_expanded),
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(colors: [Color(0xFF1E3A5F), Color(0xFF2C5282)]),
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [BoxShadow(color: const Color(0xFF1E3A5F).withOpacity(0.3), blurRadius: 16, offset: const Offset(0, 6))],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.shopping_bag_rounded, color: Colors.white, size: 22),
+                const SizedBox(width: 10),
+                Text(l.shopSearch,
+                  style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white)),
+                const SizedBox(width: 8),
+                AnimatedRotation(
+                  turns: _expanded ? 0.5 : 0,
+                  duration: const Duration(milliseconds: 200),
+                  child: const Icon(Icons.keyboard_arrow_down_rounded, color: Colors.white70, size: 22),
+                ),
+              ],
+            ),
+          ),
+        ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+        AnimatedCrossFade(
+          firstChild: const SizedBox.shrink(),
+          secondChild: Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Column(
+              children: [
+                _ShopTile(label: 'Pet Centar', icon: Icons.shopping_bag_outlined, color: const Color(0xFFE65100),
+                  onTap: () => html.window.open('https://www.pet-centar.rs/products/', '_blank')),
+                const SizedBox(height: 8),
+                _ShopTile(label: 'PetSpot', icon: Icons.shopping_bag_outlined, color: const Color(0xFF2E7D32),
+                  onTap: () => html.window.open('https://petspot.rs/catalogsearch/result/?q=', '_blank')),
+                const SizedBox(height: 8),
+                _ShopTile(label: 'Premium Pet', icon: Icons.shopping_bag_outlined, color: const Color(0xFF1565C0),
+                  onTap: () => html.window.open('https://www.premiumpet.rs/', '_blank')),
+                const SizedBox(height: 8),
+                _ShopTile(label: 'Ananas', icon: Icons.shopping_bag_outlined, color: const Color(0xFF6A1B9A),
+                  onTap: () => html.window.open('https://ananas.rs/search?query=hrana+za+ljubimce', '_blank')),
+              ],
+            ),
+          ),
+          crossFadeState: _expanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+          duration: const Duration(milliseconds: 250),
+        ),
+      ],
+    );
+  }
+}
+
+class _ShopTile extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final Color color;
+  final VoidCallback onTap;
+  const _ShopTile({required this.label, required this.icon, required this.color, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.12),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: color.withOpacity(0.3)),
+        ),
+        child: Row(
+          children: [
+            Icon(icon, color: color, size: 20),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(label, style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w600, color: color)),
+            ),
+            Icon(Icons.open_in_new_rounded, color: color.withOpacity(0.6), size: 16),
           ],
         ),
       ),
