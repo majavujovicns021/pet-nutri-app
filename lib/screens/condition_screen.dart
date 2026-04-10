@@ -25,6 +25,7 @@ class _ConditionScreenState extends State<ConditionScreen> {
   bool _initialLoaded = false;
   String? _error;
   Timer? _debounce;
+  String _scoreFilter = 'all'; // all, recommended, good, average, bad
 
   @override
   void initState() {
@@ -114,6 +115,19 @@ class _ConditionScreenState extends State<ConditionScreen> {
     if (score >= 55) return Icons.check_circle_outline_rounded;
     if (score >= 35) return Icons.info_outline_rounded;
     return Icons.warning_amber_rounded;
+  }
+
+  List<FoodScore> get _visibleResults {
+    if (_scoreFilter == 'all') return _filteredResults;
+    return _filteredResults.where((fs) {
+      switch (_scoreFilter) {
+        case 'recommended': return fs.score >= 75;
+        case 'good': return fs.score >= 55 && fs.score < 75;
+        case 'average': return fs.score >= 35 && fs.score < 55;
+        case 'bad': return fs.score < 35;
+        default: return true;
+      }
+    }).toList();
   }
 
   @override
@@ -348,6 +362,36 @@ class _ConditionScreenState extends State<ConditionScreen> {
 
                       const SizedBox(height: 20),
 
+                      // Score filter chips
+                      if (_filteredResults.isNotEmpty)
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              _FilterChip(label: 'Sve', isSelected: _scoreFilter == 'all',
+                                onTap: () => setState(() => _scoreFilter = 'all')),
+                              const SizedBox(width: 8),
+                              _FilterChip(label: 'Preporuceno', isSelected: _scoreFilter == 'recommended',
+                                color: AppColors.success,
+                                onTap: () => setState(() => _scoreFilter = 'recommended')),
+                              const SizedBox(width: 8),
+                              _FilterChip(label: 'Dobro', isSelected: _scoreFilter == 'good',
+                                color: AppColors.accent,
+                                onTap: () => setState(() => _scoreFilter = 'good')),
+                              const SizedBox(width: 8),
+                              _FilterChip(label: 'Prosecno', isSelected: _scoreFilter == 'average',
+                                color: AppColors.warning,
+                                onTap: () => setState(() => _scoreFilter = 'average')),
+                              const SizedBox(width: 8),
+                              _FilterChip(label: 'Ne preporucuje se', isSelected: _scoreFilter == 'bad',
+                                color: AppColors.danger,
+                                onTap: () => setState(() => _scoreFilter = 'bad')),
+                            ],
+                          ),
+                        ),
+
+                      const SizedBox(height: 12),
+
                       // Results
                       if (_loading)
                         const Center(
@@ -372,11 +416,11 @@ class _ConditionScreenState extends State<ConditionScreen> {
                           ),
                         ),
 
-                      if (_initialLoaded && _filteredResults.isEmpty && !_loading)
+                      if (_initialLoaded && _visibleResults.isEmpty && !_loading)
                         Padding(
                           padding: const EdgeInsets.all(32),
                           child: Text(
-                            'Nema rezultata. Probaj drugi naziv.',
+                            'Nema rezultata za izabrani filter.',
                             textAlign: TextAlign.center,
                             style: GoogleFonts.inter(
                               color: AppColors.textMuted,
@@ -385,8 +429,8 @@ class _ConditionScreenState extends State<ConditionScreen> {
                           ),
                         ),
 
-                      if (_filteredResults.isNotEmpty)
-                        ...(_filteredResults.asMap().entries.map((entry) {
+                      if (_visibleResults.isNotEmpty)
+                        ...(_visibleResults.asMap().entries.map((entry) {
                           final fs = entry.value;
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 12),
@@ -603,6 +647,34 @@ class _FoodResultCard extends StatelessWidget {
           ],
         ],
       ),
+      ),
+    );
+  }
+}
+
+class _FilterChip extends StatelessWidget {
+  final String label;
+  final bool isSelected;
+  final Color? color;
+  final VoidCallback onTap;
+  const _FilterChip({required this.label, required this.isSelected, this.color, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = color ?? AppColors.primary;
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: isSelected ? c.withOpacity(0.15) : AppColors.card,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: isSelected ? c.withOpacity(0.5) : AppColors.glassBorder),
+        ),
+        child: Text(label,
+          style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600,
+            color: isSelected ? c : AppColors.textMuted)),
       ),
     );
   }
