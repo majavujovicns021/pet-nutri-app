@@ -171,23 +171,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         const SizedBox(height: 28),
 
-                        // Избор врсте
-                        Row(
-                          children: [
-                            _PetToggle(
-                              label: '🐕 Pas',
-                              isSelected: _selectedPet == PetType.dog,
-                              onTap: () =>
-                                  setState(() => _selectedPet = PetType.dog),
-                            ),
-                            const SizedBox(width: 12),
-                            _PetToggle(
-                              label: '🐈 Macka',
-                              isSelected: _selectedPet == PetType.cat,
-                              onTap: () =>
-                                  setState(() => _selectedPet = PetType.cat),
-                            ),
-                          ],
+                        // Izbor vrste
+                        Wrap(
+                          spacing: 10,
+                          runSpacing: 10,
+                          children: PetType.values.map((type) {
+                            return _PetToggle(
+                              label: petTypeLabel(type),
+                              isSelected: _selectedPet == type,
+                              onTap: () => setState(() => _selectedPet = type),
+                            );
+                          }).toList(),
                         )
                             .animate()
                             .fadeIn(delay: 300.ms, duration: 400.ms),
