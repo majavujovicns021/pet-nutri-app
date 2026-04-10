@@ -204,6 +204,53 @@ class _ConditionScreenState extends State<ConditionScreen> {
 
                       const SizedBox(height: 24),
 
+                      // Treatment section
+                      Text(
+                        'Lecenje i terapija',
+                        style: GoogleFonts.inter(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.textPrimary,
+                        ),
+                      ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
+
+                      const SizedBox(height: 12),
+
+                      GlassCard(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.medical_services_rounded,
+                                    color: AppColors.primary, size: 20),
+                                const SizedBox(width: 8),
+                                Text(
+                                  'Preporucena terapija',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.primary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              c.treatment,
+                              style: GoogleFonts.inter(
+                                fontSize: 13,
+                                color: AppColors.textSecondary,
+                                height: 1.6,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ).animate().fadeIn(delay: 350.ms, duration: 400.ms),
+
+                      const SizedBox(height: 24),
+
                       // Search section
                       Text(
                         'Pretrazi hranu',
