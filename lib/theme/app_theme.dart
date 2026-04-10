@@ -3,33 +3,33 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppColors {
-  static const background = Color(0xFF0B0F1A);
-  static const surface = Color(0xFF131829);
-  static const card = Color(0xFF1B2036);
+  static const background = Color(0xFFF5F6FA);
+  static const surface = Color(0xFFFFFFFF);
+  static const card = Color(0xFFFFFFFF);
   static const primary = Color(0xFF6C5CE7);
   static const primaryLight = Color(0xFFA29BFE);
-  static const accent = Color(0xFF00CEC9);
-  static const warning = Color(0xFFFDAA5E);
-  static const danger = Color(0xFFFF6B6B);
-  static const success = Color(0xFF00B894);
-  static const textPrimary = Color(0xFFF0F0F8);
-  static const textSecondary = Color(0xFF9098B8);
-  static const textMuted = Color(0xFF555E80);
-  static const glassBorder = Color(0x18FFFFFF);
-  static const glassBackground = Color(0x0AFFFFFF);
+  static const accent = Color(0xFF00B4A6);
+  static const warning = Color(0xFFE8920D);
+  static const danger = Color(0xFFE74C3C);
+  static const success = Color(0xFF27AE60);
+  static const textPrimary = Color(0xFF1A1D2E);
+  static const textSecondary = Color(0xFF5A6178);
+  static const textMuted = Color(0xFF9098B8);
+  static const glassBorder = Color(0x18000000);
+  static const glassBackground = Color(0x08000000);
 }
 
 class AppTheme {
   static ThemeData get darkTheme {
     return ThemeData(
-      brightness: Brightness.dark,
+      brightness: Brightness.light,
       scaffoldBackgroundColor: AppColors.background,
-      colorScheme: const ColorScheme.dark(
+      colorScheme: const ColorScheme.light(
         primary: AppColors.primary,
         secondary: AppColors.accent,
         surface: AppColors.surface,
       ),
-      textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
+      textTheme: GoogleFonts.interTextTheme(ThemeData.light().textTheme),
       appBarTheme: AppBarTheme(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -62,20 +62,21 @@ class GlassCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
-      child: ClipRRect(
+      decoration: BoxDecoration(
+        color: AppColors.card,
         borderRadius: BorderRadius.circular(borderRadius),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
-          child: Container(
-            padding: padding ?? const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: AppColors.glassBackground,
-              borderRadius: BorderRadius.circular(borderRadius),
-              border: Border.all(color: AppColors.glassBorder),
-            ),
-            child: child,
+        border: Border.all(color: AppColors.glassBorder),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
           ),
-        ),
+        ],
+      ),
+      child: Padding(
+        padding: padding ?? const EdgeInsets.all(16),
+        child: child,
       ),
     );
   }

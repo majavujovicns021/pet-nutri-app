@@ -35,9 +35,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Stack(
         children: [
           Positioned(top: -60, right: -40,
-            child: _GlowOrb(color: AppColors.primary, size: 220, opacity: 0.2)),
+            child: _GlowOrb(color: AppColors.primary, size: 220, opacity: 0.08)),
           Positioned(bottom: 80, left: -60,
-            child: _GlowOrb(color: AppColors.accent, size: 180, opacity: 0.12)),
+            child: _GlowOrb(color: AppColors.accent, size: 180, opacity: 0.06)),
           SafeArea(
             child: CustomScrollView(
               physics: const BouncingScrollPhysics(),
@@ -71,6 +71,32 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         const SizedBox(height: 20),
 
+                        // Gde kupiti sekcija
+                        Text('Gde kupiti',
+                          style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.textPrimary),
+                        ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+                        const SizedBox(height: 10),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              _ShopLink(label: 'Pet Centar', color: const Color(0xFFE65100),
+                                onTap: () => html.window.open('https://www.pet-centar.rs/products/', '_blank')),
+                              const SizedBox(width: 10),
+                              _ShopLink(label: 'PetSpot', color: const Color(0xFF2E7D32),
+                                onTap: () => html.window.open('https://petspot.rs/catalogsearch/result/?q=', '_blank')),
+                              const SizedBox(width: 10),
+                              _ShopLink(label: 'Premium Pet', color: const Color(0xFF1565C0),
+                                onTap: () => html.window.open('https://www.premiumpet.rs/', '_blank')),
+                              const SizedBox(width: 10),
+                              _ShopLink(label: 'Ananas', color: const Color(0xFF6A1B9A),
+                                onTap: () => html.window.open('https://ananas.rs/search?query=hrana+za+ljubimce', '_blank')),
+                            ],
+                          ),
+                        ).animate().fadeIn(delay: 220.ms, duration: 400.ms),
+
+                        const SizedBox(height: 16),
+
                         // Provera simptoma dugme
                         GestureDetector(
                           onTap: () => Navigator.push(context,
@@ -94,32 +120,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ).animate().fadeIn(delay: 250.ms, duration: 400.ms),
-
-                        const SizedBox(height: 16),
-
-                        // Gde kupiti sekcija
-                        Text('Gde kupiti',
-                          style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.textPrimary),
-                        ).animate().fadeIn(delay: 270.ms, duration: 400.ms),
-                        const SizedBox(height: 10),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              _ShopLink(label: 'Pet Centar', color: const Color(0xFFE65100),
-                                onTap: () => html.window.open('https://www.pet-centar.rs/products/', '_blank')),
-                              const SizedBox(width: 10),
-                              _ShopLink(label: 'PetSpot', color: const Color(0xFF2E7D32),
-                                onTap: () => html.window.open('https://petspot.rs/catalogsearch/result/?q=', '_blank')),
-                              const SizedBox(width: 10),
-                              _ShopLink(label: 'Premium Pet', color: const Color(0xFF1565C0),
-                                onTap: () => html.window.open('https://www.premiumpet.rs/', '_blank')),
-                              const SizedBox(width: 10),
-                              _ShopLink(label: 'Ananas', color: const Color(0xFF6A1B9A),
-                                onTap: () => html.window.open('https://ananas.rs/search?query=hrana+za+ljubimce', '_blank')),
-                            ],
-                          ),
-                        ).animate().fadeIn(delay: 280.ms, duration: 400.ms),
 
                         const SizedBox(height: 24),
 
