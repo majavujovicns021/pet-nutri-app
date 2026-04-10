@@ -341,8 +341,8 @@ class _FoodResultCard extends StatelessWidget {
           const SizedBox(height: 12),
           Text('${l.whereToBuy}:', style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w600, color: AppColors.textMuted)),
           const SizedBox(height: 6),
-          SingleChildScrollView(scrollDirection: Axis.horizontal,
-            child: Row(children: [
+          _ScrollableShopRow(
+            children: [
               _ShopButton(label: 'Pet Centar', color: const Color(0xFFE65100), onTap: () {
                 final brand = product.brand;
                 final q = (brand.isNotEmpty && brand != 'Nepoznat brend') ? Uri.encodeComponent(brand).toLowerCase().replaceAll('%20', '-') : '';
@@ -366,7 +366,8 @@ class _FoodResultCard extends StatelessWidget {
                 final q = (brand.isNotEmpty && brand != 'Nepoznat brend') ? Uri.encodeComponent(brand) : '';
                 html.window.open('https://ananas.rs/search?query=$q', '_blank');
               }),
-            ])),
+            ],
+          ),
         ]),
       ),
     );
@@ -401,6 +402,53 @@ class _FilterChip extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(color: isSelected ? c.withOpacity(0.15) : AppColors.card, borderRadius: BorderRadius.circular(12), border: Border.all(color: isSelected ? c.withOpacity(0.5) : AppColors.glassBorder)),
         child: Text(label, style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600, color: isSelected ? c : AppColors.textMuted))));
+  }
+}
+
+class _ScrollableShopRow extends StatefulWidget {
+  final List<Widget> children;
+  const _ScrollableShopRow({required this.children});
+  @override
+  State<_ScrollableShopRow> createState() => _ScrollableShopRowState();
+}
+
+class _ScrollableShopRowState extends State<_ScrollableShopRow> {
+  final _scrollController = ScrollController();
+  bool _showArrow = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    if (!_scrollController.hasClients) return;
+    final atEnd = _scrollController.offset >= _scrollController.position.maxScrollExtent - 10;
+    if (atEnd && _showArrow) setState(() => _showArrow = false);
+    if (!atEnd && !_showArrow) setState(() => _showArrow = true);
+  }
+
+  @override
+  void dispose() { _scrollController.dispose(); super.dispose(); }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.centerRight,
+      children: [
+        SingleChildScrollView(controller: _scrollController, scrollDirection: Axis.horizontal,
+          child: Row(children: widget.children)),
+        if (_showArrow)
+          Positioned(right: 0,
+            child: IgnorePointer(
+              child: Container(
+                padding: const EdgeInsets.only(left: 24, right: 4),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [AppColors.card.withOpacity(0), AppColors.card])),
+                child: const Icon(Icons.arrow_forward_ios_rounded, color: AppColors.textMuted, size: 14)))),
+      ],
+    );
   }
 }
 

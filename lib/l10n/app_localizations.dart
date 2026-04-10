@@ -94,6 +94,10 @@ class AppLocalizations {
   String get locationLoading => _t('Ucitavanje lokacije...', 'Loading location...');
   String get locationError => _t('Nije moguce dobiti lokaciju. Dozvoli pristup lokaciji u browseru.', 'Could not get location. Allow location access in your browser.');
 
+  // Shop search
+  String get shopSearch => _t('Pretraga prodavnica', 'Shop Search');
+  String get scrollForMore => _t('Skroluj za vise', 'Scroll for more');
+
   String _t(String sr, String en) => locale.languageCode == 'en' ? en : sr;
 }
 
