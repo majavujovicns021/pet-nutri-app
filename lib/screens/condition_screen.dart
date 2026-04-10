@@ -97,24 +97,29 @@ class _ConditionScreenState extends State<ConditionScreen> {
   }
 
   Color _scoreColor(int score) {
-    if (score >= 75) return AppColors.success;
-    if (score >= 55) return AppColors.accent;
-    if (score >= 35) return AppColors.warning;
-    return AppColors.danger;
+    if (score >= 75) return AppColors.success;  // zeleno — isto kao dobro
+    if (score >= 55) return AppColors.success;  // zeleno
+    if (score >= 35) return AppColors.warning;  // narandzasta
+    return AppColors.danger;                    // crvena
   }
 
   String _scoreLabel(int score) {
     if (score >= 75) return 'Preporuceno';
     if (score >= 55) return 'Dobro';
     if (score >= 35) return 'Prosecno';
-    return 'Ne preporucuje se';
+    return 'Izbegavaj';
   }
 
   IconData _scoreIcon(int score) {
-    if (score >= 75) return Icons.thumb_up_rounded;
+    if (score >= 75) return Icons.star_rounded;  // zvezdica za preporuceno
     if (score >= 55) return Icons.check_circle_outline_rounded;
     if (score >= 35) return Icons.info_outline_rounded;
-    return Icons.warning_amber_rounded;
+    return Icons.dangerous_rounded;
+  }
+
+  Color _scoreIconColor(int score) {
+    if (score >= 75) return AppColors.warning; // zuta zvezdica
+    return _scoreColor(score);
   }
 
   List<FoodScore> get _visibleResults {
@@ -371,19 +376,19 @@ class _ConditionScreenState extends State<ConditionScreen> {
                               _FilterChip(label: 'Sve', isSelected: _scoreFilter == 'all',
                                 onTap: () => setState(() => _scoreFilter = 'all')),
                               const SizedBox(width: 8),
-                              _FilterChip(label: 'Preporuceno', isSelected: _scoreFilter == 'recommended',
+                              _FilterChip(label: '⭐ Preporuceno', isSelected: _scoreFilter == 'recommended',
                                 color: AppColors.success,
                                 onTap: () => setState(() => _scoreFilter = 'recommended')),
                               const SizedBox(width: 8),
-                              _FilterChip(label: 'Dobro', isSelected: _scoreFilter == 'good',
-                                color: AppColors.accent,
+                              _FilterChip(label: '✓ Dobro', isSelected: _scoreFilter == 'good',
+                                color: AppColors.success,
                                 onTap: () => setState(() => _scoreFilter = 'good')),
                               const SizedBox(width: 8),
                               _FilterChip(label: 'Prosecno', isSelected: _scoreFilter == 'average',
                                 color: AppColors.warning,
                                 onTap: () => setState(() => _scoreFilter = 'average')),
                               const SizedBox(width: 8),
-                              _FilterChip(label: 'Ne preporucuje se', isSelected: _scoreFilter == 'bad',
+                              _FilterChip(label: '✕ Izbegavaj', isSelected: _scoreFilter == 'bad',
                                 color: AppColors.danger,
                                 onTap: () => setState(() => _scoreFilter = 'bad')),
                             ],
@@ -439,6 +444,7 @@ class _ConditionScreenState extends State<ConditionScreen> {
                               scoreColor: _scoreColor(fs.score),
                               scoreLabel: _scoreLabel(fs.score),
                               scoreIcon: _scoreIcon(fs.score),
+                              scoreIconColor: _scoreIconColor(fs.score),
                             ),
                           )
                               .animate()
@@ -502,12 +508,14 @@ class _FoodResultCard extends StatelessWidget {
   final Color scoreColor;
   final String scoreLabel;
   final IconData scoreIcon;
+  final Color scoreIconColor;
 
   const _FoodResultCard({
     required this.foodScore,
     required this.scoreColor,
     required this.scoreLabel,
     required this.scoreIcon,
+    required this.scoreIconColor,
   });
 
   @override
@@ -576,7 +584,7 @@ class _FoodResultCard extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Icon(scoreIcon, color: scoreColor, size: 20),
+                    Icon(scoreIcon, color: scoreIconColor, size: 20),
                     const SizedBox(height: 2),
                     Text(
                       scoreLabel,

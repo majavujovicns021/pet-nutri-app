@@ -19,7 +19,7 @@ class FoodScore {
 
 class FoodScorer {
   static FoodScore evaluate(PetFoodProduct product, PetCondition condition) {
-    int score = 60; // Bazni skor — vecina hrane je "ok"
+    int score = 50; // Bazni skor — neutralno
     final pros = <String>[];
     final cons = <String>[];
 
@@ -27,14 +27,6 @@ class FoodScorer {
     final nameLower = product.name.toLowerCase();
     final brandLower = product.brand.toLowerCase();
     final combined = '$ingredientsLower $nameLower $brandLower';
-
-    // Bonus ako je veterinarska/medicinska hrana
-    if (combined.contains('veterinary') || combined.contains('prescription') ||
-        combined.contains('clinical') || combined.contains('medical') ||
-        combined.contains('diet') || combined.contains('health')) {
-      score += 10;
-      pros.add('Veterinarska/dijetetska formula');
-    }
 
     // Provera dobrih sastojaka
     int goodFound = 0;
@@ -44,7 +36,7 @@ class FoodScorer {
         if (goodFound <= 4) pros.add('Sadrzi: $good');
       }
     }
-    score += (goodFound * 6).clamp(0, 30);
+    score += (goodFound * 8).clamp(0, 40);
 
     // Provera losih sastojaka
     int badFound = 0;
