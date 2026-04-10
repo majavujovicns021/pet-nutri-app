@@ -302,38 +302,6 @@ class _ConditionCard extends StatelessWidget {
   }
 }
 
-class _ShopLink extends StatelessWidget {
-  final String label;
-  final Color color;
-  final VoidCallback onTap;
-  const _ShopLink({required this.label, required this.color, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        decoration: BoxDecoration(
-          color: color.withOpacity(0.12),
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: color.withOpacity(0.3)),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.shopping_bag_outlined, color: color, size: 18),
-            const SizedBox(width: 6),
-            Text(label, style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: color)),
-            const SizedBox(width: 4),
-            Icon(Icons.open_in_new_rounded, color: color.withOpacity(0.6), size: 14),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class _ShopSearchButton extends StatefulWidget {
   final AppLocalizations l;
   const _ShopSearchButton({required this.l});
@@ -434,66 +402,6 @@ class _ShopTile extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _ScrollableShopRow extends StatefulWidget {
-  final List<Widget> children;
-  const _ScrollableShopRow({required this.children});
-  @override
-  State<_ScrollableShopRow> createState() => _ScrollableShopRowState();
-}
-
-class _ScrollableShopRowState extends State<_ScrollableShopRow> {
-  final _scrollController = ScrollController();
-  bool _showArrow = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(_onScroll);
-  }
-
-  void _onScroll() {
-    if (!_scrollController.hasClients) return;
-    final atEnd = _scrollController.offset >= _scrollController.position.maxScrollExtent - 10;
-    if (atEnd && _showArrow) setState(() => _showArrow = false);
-    if (!atEnd && !_showArrow) setState(() => _showArrow = true);
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.centerRight,
-      children: [
-        SingleChildScrollView(
-          controller: _scrollController,
-          scrollDirection: Axis.horizontal,
-          child: Row(children: widget.children),
-        ),
-        if (_showArrow)
-          Positioned(
-            right: 0,
-            child: IgnorePointer(
-              child: Container(
-                padding: const EdgeInsets.only(left: 24, right: 4),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [AppColors.background.withOpacity(0), AppColors.background],
-                  ),
-                ),
-                child: const Icon(Icons.arrow_forward_ios_rounded, color: Colors.white70, size: 16),
-              ),
-            ),
-          ),
-      ],
     );
   }
 }
