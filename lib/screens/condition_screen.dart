@@ -654,7 +654,84 @@ class _FoodResultCard extends StatelessWidget {
                 ),
           ],
         ],
+
+          // Gde kupiti - shop linkovi
+          const SizedBox(height: 12),
+          Text('Gde kupiti:', style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w600, color: AppColors.textMuted)),
+          const SizedBox(height: 6),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                _ShopButton(
+                  label: 'Pet Centar',
+                  color: const Color(0xFFE65100),
+                  onTap: () {
+                    final q = Uri.encodeComponent(product.name);
+                    html.window.open('https://www.petcentar.rs/pretraga?q=$q', '_blank');
+                  },
+                ),
+                const SizedBox(width: 8),
+                _ShopButton(
+                  label: 'Zoo City',
+                  color: const Color(0xFF2E7D32),
+                  onTap: () {
+                    final q = Uri.encodeComponent(product.name);
+                    html.window.open('https://www.zoocity.rs/search?q=$q', '_blank');
+                  },
+                ),
+                const SizedBox(width: 8),
+                _ShopButton(
+                  label: 'Maxi Zoo',
+                  color: const Color(0xFF1565C0),
+                  onTap: () {
+                    final q = Uri.encodeComponent(product.name);
+                    html.window.open('https://www.maxizoo.rs/search/?q=$q', '_blank');
+                  },
+                ),
+                const SizedBox(width: 8),
+                _ShopButton(
+                  label: 'ePet Shop',
+                  color: const Color(0xFF6A1B9A),
+                  onTap: () {
+                    final q = Uri.encodeComponent(product.name);
+                    html.window.open('https://www.epetshop.rs/search?q=$q', '_blank');
+                  },
+                ),
+              ],
+            ),
+          ),
       ),
+      ),
+    );
+  }
+}
+
+class _ShopButton extends StatelessWidget {
+  final String label;
+  final Color color;
+  final VoidCallback onTap;
+  const _ShopButton({required this.label, required this.color, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.15),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: color.withOpacity(0.3)),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.shopping_bag_outlined, color: color, size: 14),
+            const SizedBox(width: 4),
+            Text(label, style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w600, color: color)),
+          ],
+        ),
       ),
     );
   }
