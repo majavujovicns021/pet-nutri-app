@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'dart:html' as html;
 import '../data/conditions_database.dart';
 import '../services/food_scorer.dart';
 import '../services/pet_food_api.dart';
@@ -491,11 +491,8 @@ class _FoodResultCard extends StatelessWidget {
     final product = fs.product;
 
     return GestureDetector(
-      onTap: () async {
-        final url = Uri.parse(product.productUrl);
-        if (await canLaunchUrl(url)) {
-          await launchUrl(url, mode: LaunchMode.externalApplication);
-        }
+      onTap: () {
+        html.window.open(product.productUrl, '_blank');
       },
       child: GlassCard(
       padding: const EdgeInsets.all(16),

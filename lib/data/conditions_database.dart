@@ -1,15 +1,16 @@
 /// Veterinarski dijetetski vodici za cesta stanja kod kucnih ljubimaca.
 
-enum PetType { dog, cat, poultry, pigeon, parrot, fish }
+enum PetType { dog, cat, rabbit, rodent, bird, terrarium, aquarium }
 
 String petTypeLabel(PetType type) {
   switch (type) {
     case PetType.dog: return '🐕 Pas';
     case PetType.cat: return '🐈 Macka';
-    case PetType.poultry: return '🐔 Zivina';
-    case PetType.pigeon: return '🕊️ Golub';
-    case PetType.parrot: return '🦜 Papagaj';
-    case PetType.fish: return '🐟 Ribice';
+    case PetType.rabbit: return '🐇 Zecevi i kunici';
+    case PetType.rodent: return '🐹 Glodari';
+    case PetType.bird: return '🐦 Ptice';
+    case PetType.terrarium: return '🦎 Teraristika';
+    case PetType.aquarium: return '🐟 Akvaristika';
   }
 }
 
@@ -390,7 +391,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'newcastle',
     name: 'Njukasl bolest',
     description: 'Njukasl bolest (Newcastle disease) je visoko kontagiozna virusna bolest ptica izazvana paramiksovirusom serotip 1 (APMV-1) koja napada respiratorni, nervni i digestivni sistem. Velogeni sojevi izazivaju mortalitet do 100% kod nevakcinisanih jata. Bolest je prijavljiva drzavnim veterinarskim sluzbama i podleze obaveznim merama kontrole i eradikacije.',
-    affectedSpecies: [PetType.poultry, PetType.pigeon],
+    affectedSpecies: [PetType.bird],
     icon: '🦠',
     symptoms: ['Kijanje i kasalj', 'Otezano disanje', 'Zelenkasti proliv', 'Pad nosivosti jaja', 'Uvijanje vrata', 'Paraliza krila i nogu', 'Otecenost glave', 'Iznenadna smrt'],
     guidelines: [
@@ -406,7 +407,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'coccidiosis_poultry',
     name: 'Kokcidioza',
     description: 'Kokcidioza je parazitska bolest creva izazvana protozoom iz roda Eimeria, koja razara crevnu sluzokzu i dovodi do krvarenja, malapsorpcije i dehidracije. Najcesce pogadja mlade ptice uzrasta 3-8 nedelja jer nemaju razvijen imunitet. Postoji vise vrsta Eimeria sa razlicitim tropizmom za delove creva — E. tenella napada cekume i izaziva najtezu krvavu formu.',
-    affectedSpecies: [PetType.poultry, PetType.pigeon],
+    affectedSpecies: [PetType.bird],
     icon: '🔬',
     symptoms: ['Krvav proliv', 'Gubitak apetita', 'Gubitak tezine', 'Nakostresen perje', 'Letargija', 'Dehidracija', 'Blede kreste i podbradak', 'Pad nosivosti'],
     guidelines: [
@@ -422,7 +423,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'avian_influenza',
     name: 'Pticji grip',
     description: 'Avijarni influenca virus (AIV) je visoko patogeni virus iz porodice Orthomyxoviridae koji izaziva sistemsku infekciju sa mortalitetom do 100% kod zivine. Podtipovi H5N1 i H7N9 su od posebnog znacaja jer imaju zoonotski potencijal — mogu se preneti na ljude. Bolest je prijavljiva Svetskoj organizaciji za zdravlje zivotinja (WOAH) i podleze obaveznim merama eradikacije.',
-    affectedSpecies: [PetType.poultry, PetType.pigeon, PetType.parrot],
+    affectedSpecies: [PetType.bird],
     icon: '⚠️',
     symptoms: ['Iznenadna smrt', 'Pad nosivosti jaja', 'Otecenost glave i ociju', 'Plavicaste kreste i podbradak', 'Otezano disanje', 'Vodenast proliv', 'Letargija', 'Krvarenja na nogama'],
     guidelines: [
@@ -438,7 +439,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'infectious_bronchitis',
     name: 'Infektivni bronhitis',
     description: 'Infektivni bronhitis (IB) je akutna, visoko kontagiozna virusna bolest kokosi izazvana koronavirusom (IBV) koja primarno napada respiratorni trakt, ali moze ostetiti i bubrege i reproduktivni sistem. Virus ima brojne serotipove sto otezava vakcinaciju jer imunitet na jedan soj ne stiti od drugog. Kod nosiljki izaziva znacajan pad nosivosti i deformisana jaja sa mekom ili hrapavom ljuskom.',
-    affectedSpecies: [PetType.poultry],
+    affectedSpecies: [PetType.bird],
     icon: '🫁',
     symptoms: ['Kasalj i kijanje', 'Hropci pri disanju', 'Curenje iz nosa', 'Suzenje ociju', 'Pad nosivosti jaja', 'Deformisana jaja (meka ljuska)', 'Smanjen unos hrane', 'Letargija'],
     guidelines: [
@@ -454,7 +455,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'marek',
     name: 'Marekova bolest',
     description: 'Marekova bolest je virusna neoplasticna bolest kokosi izazvana herpes virusom (Gallid alphaherpesvirus 2) koji izaziva limfoidne tumore u nervima, kozi, misicima i unutrasnjim organima. Virus se siri vazdusnim putem preko perjane prasine i izuzetno je otporan u spoljasnjoj sredini — moze preziveti mesecima u prasini kokosinjca. Najcesce pogadja mlade kokosi uzrasta 12-24 nedelje, a vakcinacija jednodnevnih pilica je jedina efikasna preventivna mera.',
-    affectedSpecies: [PetType.poultry],
+    affectedSpecies: [PetType.bird],
     icon: '🧬',
     symptoms: ['Paraliza nogu i krila', 'Gubitak tezine', 'Siva boja ociju (promena zenice)', 'Tumori na kozi', 'Otezano disanje', 'Proliv', 'Smanjena nosivost', 'Iznenadna smrt mladih pilica'],
     guidelines: [
@@ -470,7 +471,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'egg_binding',
     name: 'Zastoj jajeta',
     description: 'Zastoj jajeta (egg binding) je hitno stanje u kome zenka ne moze da polozi formirano jaje, najcesce zbog deficita kalcijuma koji oslabljuje kontrakcije jajovoda, prevelikog ili deformisanog jajeta, ili opsteg slabljenja organizma. Stanje je zivotno ugrozavajuce jer moze dovesti do peritonitisa, prolapsa kloake, sepse i smrti u roku od 24-48 sati. Najcesce pogadja mlade zenke pri prvom nosenju, hronicne nosiljke i ptice na neadekvatnoj ishrani.',
-    affectedSpecies: [PetType.poultry, PetType.parrot, PetType.pigeon],
+    affectedSpecies: [PetType.bird],
     icon: '🥚',
     symptoms: ['Naprezanje bez polaganja jajeta', 'Nadut stomak', 'Letargija', 'Gubitak apetita', 'Otezano hodanje', 'Sedenje na podu', 'Tesko disanje', 'Izlazak tkiva iz kloake'],
     guidelines: [
@@ -486,7 +487,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'bumblefoot',
     name: 'Pododermatitis (Bumblefoot)',
     description: 'Pododermatitis (bumblefoot) je bakterijska infekcija stopala najcesce izazvana Staphylococcus aureus bakterijom koja ulazi kroz male rane ili abrazije na tabanima. Infekcija napreduje od blagog crvenila i otoka do formiranja apscesa sa karakteristicnom crnom krastom na tabanu. Predisponirajuci faktori su gojaznost, tvrde i neadekvatne podloge, nedostatak vitamina A i smanjena aktivnost.',
-    affectedSpecies: [PetType.poultry, PetType.pigeon],
+    affectedSpecies: [PetType.bird],
     icon: '🦶',
     symptoms: ['Hramanje', 'Otecenost stopala', 'Crna krasta na tabanu', 'Toplota na mestu infekcije', 'Odbijanje hodanja', 'Sedenje na mestu', 'Gubitak apetita', 'Letargija'],
     guidelines: [
@@ -503,7 +504,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'paramyxovirus',
     name: 'Paramiksoviroza (PMV)',
     description: 'Paramiksoviroza golubova je virusna bolest nervnog sistema izazvana paramiksovirusom serotip 1 (PPMV-1), varijantom Njukasl virusa adaptiranom na golubove. Virus napada centralni nervni sistem i bubrege, izazivajuci karakteristicne neuroloske simptome poput uvijanja vrata (tortikolis) i gubitka ravnoteze. Bolest je visoko kontagiozna i siri se direktnim kontaktom, kontaminiranom hranom i vodom, a mortalitet kod nevakcinisanih golubova moze dostici 30-50%.',
-    affectedSpecies: [PetType.pigeon],
+    affectedSpecies: [PetType.bird],
     icon: '🦠',
     symptoms: ['Uvijanje vrata', 'Kruzenje u mestu', 'Gubitak ravnoteze', 'Vodenast zeleni proliv', 'Gubitak tezine', 'Nemogucnost letenja', 'Drhtanje glave', 'Paraliza'],
     guidelines: [
@@ -519,7 +520,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'canker',
     name: 'Trihomonijaza (Canker)',
     description: 'Trihomonijaza (canker) je parazitska bolest izazvana protozoom Trichomonas gallinae koji inficira gornji digestivni trakt — usnu duplju, jednjak i voljku. Parazit izaziva karakteristicne zuckaste kazeinozne naslage (plakove) u grlu koje mogu potpuno blokirati jednjak i dovesti do ugusenja ili gladovanja. Bolest se prenosi direktnim kontaktom, kontaminiranom vodom i hranjenjem mladunaca — roditelji prenose parazita na ptice u gnezdu.',
-    affectedSpecies: [PetType.pigeon, PetType.parrot],
+    affectedSpecies: [PetType.bird],
     icon: '🟡',
     symptoms: ['Zuckaste naslage u grlu', 'Otezano gutanje', 'Gubitak apetita', 'Gubitak tezine', 'Smrdljiv dah', 'Nakostresen perje', 'Povracanje', 'Curenje iz kljuna'],
     guidelines: [
@@ -535,7 +536,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'pigeon_salmonella',
     name: 'Salmoneloza (Paratifus)',
     description: 'Salmoneloza golubova je bakterijska infekcija izazvana najcesce Salmonella typhimurium varijantom Copenhagen koja napada creva, zglobove, nervni sistem i reproduktivne organe. Bolest ima vise klinickih oblika — crevni (proliv), zglobni (artritis), nervni (tortikolis) i organski (hepatitis, nefritis). Bakterija se izlucuje fecesom i kontaminira hranu i vodu, a moze preziveti mesecima u spoljasnjoj sredini.',
-    affectedSpecies: [PetType.pigeon, PetType.poultry],
+    affectedSpecies: [PetType.bird],
     icon: '🦠',
     symptoms: ['Zelenkast vodenast proliv', 'Oteceni zglobovi', 'Hramanje', 'Gubitak tezine', 'Nakostresen perje', 'Neplodnost', 'Mrtvi embrioni u jajima', 'Letargija'],
     guidelines: [
@@ -551,7 +552,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'pigeon_worms',
     name: 'Crvi (Helmintijaza)',
     description: 'Helmintijaza je parazitska infekcija creva izazvana razlicitim vrstama crva — najcesci su oblici (Ascaridia), vlasoglavi (Capillaria) i pantljicari (cestode). Paraziti se hrane sadrzajem creva ili krvlju domacina, izazivajuci malapsorpciju, anemiju i ostecenje crevne sluznice. Infekcija se siri fekalnim putem — jaja parazita se izlucuju izmetom i kontaminiraju hranu, vodu i podlogu, a neke vrste koriste intermedijarne domacine (puzeve, insekte).',
-    affectedSpecies: [PetType.pigeon, PetType.poultry, PetType.parrot],
+    affectedSpecies: [PetType.bird],
     icon: '🪱',
     symptoms: ['Gubitak tezine', 'Proliv', 'Nakostresen perje', 'Smanjen apetit', 'Lose stanje perja', 'Letargija', 'Vidljivi crvi u izmetu', 'Anemija (blede sluznice)'],
     guidelines: [
@@ -567,7 +568,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'ornithosis',
     name: 'Ornitoza (Hlamidija)',
     description: 'Ornitoza (hlamidioza) je bakterijska infekcija izazvana obligatnim intracelularnim patogenom Chlamydia psittaci koji napada respiratorni trakt, oci i unutrasnje organe ptica. Bolest je zoonoza — moze se preneti na ljude inhalacijom kontaminirane prasine iz izmeta, perja ili nosnog sekreta zarazenih ptica, izazivajuci atipicnu pneumoniju. Kod ptica bolest moze biti akutna, hronicna ili latentna, pri cemu asimptomatski nosioci aktivno sire infekciju.',
-    affectedSpecies: [PetType.pigeon, PetType.parrot, PetType.poultry],
+    affectedSpecies: [PetType.bird],
     icon: '😷',
     symptoms: ['Curenje iz nosa', 'Suzenje ociju', 'Otezano disanje', 'Kijanje', 'Zelenkast proliv', 'Gubitak apetita', 'Nakostresen perje', 'Letargija'],
     guidelines: [
@@ -584,7 +585,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'pbfd',
     name: 'PBFD (Bolest perja i kljuna)',
     description: 'PBFD (Psittacine Beak and Feather Disease) je virusna bolest izazvana cirkovirusom (BFDV) koja napada celije perja, kljuna i imunog sistema papagaja. Virus razara folikule perja i matrice kljuna, izazivajuci progresivni gubitak perja, deformacije kljuna i tesku imunosupresiju. Bolest je najcesca kod kakadua, africkih sivih papagaja i loriusa, a kod mladih ptica cesto ima fatalan ishod.',
-    affectedSpecies: [PetType.parrot],
+    affectedSpecies: [PetType.bird],
     icon: '🪶',
     symptoms: ['Gubitak perja', 'Deformisano perje', 'Deformisan kljun', 'Lomljiv kljun', 'Kozne lezije', 'Ceste infekcije', 'Gubitak tezine', 'Letargija'],
     guidelines: [
@@ -600,7 +601,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'psittacosis',
     name: 'Psitakoza (Papagajska groznica)',
     description: 'Psitakoza je bakterijska infekcija izazvana Chlamydia psittaci koja kod papagaja izaziva respiratorne probleme, hepatitis i enteritis. Bolest je identicna ornitozi kod golubova ali se termin psitakoza tradicionalno koristi za infekciju kod papagaja (Psittaciformes). Ovo je ozbiljna zoonoza — zarazene ptice izlucuju bakteriju izmetom i nosnim sekretom, a ljudi se inficiraju inhalacijom kontaminirane prasine.',
-    affectedSpecies: [PetType.parrot, PetType.pigeon],
+    affectedSpecies: [PetType.bird],
     icon: '🤒',
     symptoms: ['Otezano disanje', 'Curenje iz nosa i ociju', 'Zelenkast proliv', 'Nakostresen perje', 'Letargija', 'Gubitak apetita', 'Drhtanje', 'Gubitak tezine'],
     guidelines: [
@@ -616,7 +617,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'aspergillosis',
     name: 'Aspergiloza',
     description: 'Aspergiloza je gljivicna infekcija respiratornog sistema izazvana najcesce vrstom Aspergillus fumigatus cije se spore nalaze svuda u okolini — u zemlji, trulom drvetu, plesnivoj hrani i vlaznim prostorima. Kod zdravih ptica imuni sistem kontrolise spore, ali stres, imunosupresija, nedostatak vitamina A i losa higijena predisponiraju razvoj bolesti. Gljivica formira granulome (aspergillome) u vazdusnim kesama i plucima, postepeno ugrozavajuci disanje.',
-    affectedSpecies: [PetType.parrot, PetType.pigeon, PetType.poultry],
+    affectedSpecies: [PetType.bird],
     icon: '🍄',
     symptoms: ['Otezano disanje', 'Hropci i zvizdanje', 'Gubitak glasa', 'Gubitak apetita', 'Gubitak tezine', 'Letargija', 'Promena boje izmeta', 'Nakostresen perje'],
     guidelines: [
@@ -632,7 +633,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'feather_plucking',
     name: 'Cupanje perja',
     description: 'Cupanje perja (feather destructive behavior) je kompleksno stanje kod papagaja koje moze imati medicinske uzroke (kozne infekcije, paraziti, alergije, bolest jetre, deficit vitamina A ili kalcijuma) ili bihejvioralne uzroke (dosada, stres, anksioznost, nedostatak socijalne interakcije). Papagaji su visoko inteligentne i socijalne ptice kojima je potrebna mentalna stimulacija, a cupanje perja je cesto manifestacija nezadovoljenih potreba. Dijagnoza zahteva sistematsko iskljucivanje medicinskih uzroka pre nego sto se zakljuci da je problem bihejvioralni.',
-    affectedSpecies: [PetType.parrot],
+    affectedSpecies: [PetType.bird],
     icon: '😰',
     symptoms: ['Cupanje sopstvenog perja', 'Ogoljene zone na telu', 'Grickanje koze', 'Razdrazljivost', 'Kricanje', 'Stereotipno ponasanje', 'Gubitak apetita', 'Agresivnost'],
     guidelines: [
@@ -648,7 +649,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'avian_gastric_yeast',
     name: 'Megabakterijoza (AGY)',
     description: 'Megabakterijoza (Avian Gastric Yeast — AGY) je gljivicna infekcija zeluca izazvana organizmom Macrorhabdus ornithogaster (ranije poznatim kao megabakterija) koji kolonizuje zidove proventrikulusa (zlezdanog zeluca). Gljivica ostecuje sluzokzu zeluca, smanjuje lucenje zeludacne kiseline i dovodi do malapsorpcije hranljivih materija. Najcesce pogadja tigrice, kanarince i male papagaje, a bolest moze biti akutna ili hronicna sa postepenim mrsavljenjem.',
-    affectedSpecies: [PetType.parrot],
+    affectedSpecies: [PetType.bird],
     icon: '🦠',
     symptoms: ['Gubitak tezine', 'Povracanje', 'Nesvarena hrana u izmetu', 'Nakostresen perje', 'Letargija', 'Gubitak apetita', 'Proliv', 'Regurgitacija'],
     guidelines: [
@@ -664,7 +665,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'vitamin_a_deficiency',
     name: 'Nedostatak vitamina A',
     description: 'Hipovitaminoza A je jedan od najcescih nutritivnih problema kod papagaja koji se hrane iskljucivo semenskom mesavinom, jer seme (narocito suncokret i proso) sadrzi vrlo malo vitamina A i beta-karotena. Vitamin A je esencijalan za zdravlje epitelijalnih tkiva — sluznica respiratornog, digestivnog i urogenitalnog trakta, koze i ociju. Deficit dovodi do metaplazije sluznica (zamene normalnog epitela keratinizovanim), sto predisponira hronicne respiratorne infekcije, sinuzitis i formiranje belihh plakova u ustima.',
-    affectedSpecies: [PetType.parrot, PetType.pigeon, PetType.poultry],
+    affectedSpecies: [PetType.bird],
     icon: '🥕',
     symptoms: ['Bele tacke u ustima', 'Oteceni sinusi', 'Curenje iz nosa', 'Lose stanje perja', 'Ceste infekcije', 'Otezano disanje', 'Problemi sa ocima', 'Gubitak apetita'],
     guidelines: [
@@ -680,7 +681,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'fatty_liver',
     name: 'Masna jetra (Hepaticka lipidoza)',
     description: 'Hepaticka lipidoza (masna jetra) je metabolicki poremecaj kod papagaja uzrokovan prekomernim nakupljanjem masti u cellijama jetre, najcesce kao posledica visokokaloricne dijete bogate masnim semenjem (suncokret, kikiriki) i nedovoljne fizicke aktivnosti. Bolest je narocito cesta kod amazonki, tigrica i rozela. Ostecenje jetre dovodi do poremecaja metabolizma, koagulacije i detoksikacije, a u tezim slucajevima moze biti fatalno.',
-    affectedSpecies: [PetType.parrot],
+    affectedSpecies: [PetType.bird],
     icon: '🫁',
     symptoms: ['Gojaznost', 'Letargija', 'Otezano disanje', 'Gubitak apetita', 'Prerasli kljun', 'Prerasli nokti', 'Lose stanje perja', 'Proliv'],
     guidelines: [
@@ -697,7 +698,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'ich',
     name: 'Ihtioftirioza (Ich / Bela tackasta bolest)',
     description: 'Ihtioftirioza je najcesca parazitska bolest akvarijumskih riba izazvana protozoom Ichthyophthirius multifiliis. Parazit se uvlaci pod kozu ribe i formira karakteristicne bele tackice velicine zrna soli po celom telu i perajima. Bolest je visoko kontagiozna i moze biti fatalna ako se ne leci, narocito kod mladih i stresiranih riba.',
-    affectedSpecies: [PetType.fish],
+    affectedSpecies: [PetType.aquarium],
     icon: '⚪',
     symptoms: ['Bele tackice po telu i perajima', 'Trljanje o predmete (flashing)', 'Ubrzano disanje', 'Stiskanje peraja uz telo', 'Gubitak apetita', 'Letargija', 'Plutanje na povrsini', 'Gubitak boje'],
     guidelines: [
@@ -713,7 +714,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'fin_rot',
     name: 'Truljenje peraja (Fin Rot)',
     description: 'Truljenje peraja je bakterijska infekcija izazvana najcesce bakterijama Aeromonas, Pseudomonas ili Flavobacterium koje razaraju tkivo peraja od ivica ka bazi. Bolest je obicno sekundarna — nastaje usled loseg kvaliteta vode, stresa, prenapucenosti akvarijuma ili povreda peraja. Ako se ne leci, infekcija moze napredovati do tela ribe i postati fatalna.',
-    affectedSpecies: [PetType.fish],
+    affectedSpecies: [PetType.aquarium],
     icon: '🩹',
     symptoms: ['Razderani ili iskrzani rubovi peraja', 'Belo ili crvenkasto obojenje ivica peraja', 'Skracivanje peraja', 'Crvenilo na bazi peraja', 'Letargija', 'Gubitak apetita', 'Plutanje na mestu', 'Belo zamucenje na perajima'],
     guidelines: [
@@ -729,7 +730,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'dropsy',
     name: 'Vodena bolest (Dropsy)',
     description: 'Vodena bolest (ascites) je stanje kod riba karakterisano nakupljanjem tecnosti u telesnoj duplji sto izaziva karakteristicno naduvavanje tela i ispupcenje ljuski (izgled borove sisarke). Nije zasebna bolest vec simptom ozbiljnog unutrasnjeg problema — najcesce bakterijske infekcije bubrega (Aeromonas), otkazivanja jetre ili virusne infekcije. Prognoza je obicno losa jer se simptomi javljaju tek u naprednom stadijumu bolesti.',
-    affectedSpecies: [PetType.fish],
+    affectedSpecies: [PetType.aquarium],
     icon: '💧',
     symptoms: ['Naduvano telo', 'Ispupcene ljuske (izgled borove sisarke)', 'Ispupcene oci', 'Gubitak apetita', 'Letargija', 'Bleda boja', 'Ubrzano disanje', 'Crvenkast ili belikast izmet'],
     guidelines: [
@@ -745,7 +746,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'swim_bladder',
     name: 'Poremecaj plivaceg mehura',
     description: 'Poremecaj plivaceg mehura je stanje kod riba koje utice na sposobnost kontrole plovnosti — riba moze plutati na povrsini, tonuti na dno ili plivati na stranu/naopako. Najcesci uzroci su prejedanje, zatvor, bakterijska infekcija plivaceg mehura, urodjene deformacije ili pritisak uvecanih organa. Narocito je cest kod zlatnih ribica i beta riba zbog njihove kompaktne gradje tela.',
-    affectedSpecies: [PetType.fish],
+    affectedSpecies: [PetType.aquarium],
     icon: '🎈',
     symptoms: ['Plutanje na povrsini', 'Tonjenje na dno', 'Plivanje na stranu ili naopako', 'Otezano odrzavanje ravnoteze', 'Nadut stomak', 'Gubitak apetita', 'Savijeno telo', 'Letargija'],
     guidelines: [
@@ -761,7 +762,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'velvet_disease',
     name: 'Barstunasta bolest (Velvet)',
     description: 'Barstunasta bolest je parazitska infekcija izazvana dinoflagellatom Piscinoodinium (slatkovodne ribe) ili Amyloodinium (morske ribe) koji se pricvrscuje za kozu i skrge riba. Parazit formira sitne zlatno-smede tackice koje daju kozi izgled barsuna ili fine prasine. Bolest je visoko kontagiozna i moze biti fatalnija od ich-a jer cesto napada skrge i otezava disanje pre nego sto se primete vidljivi simptomi na kozi.',
-    affectedSpecies: [PetType.fish],
+    affectedSpecies: [PetType.aquarium],
     icon: '✨',
     symptoms: ['Zlatno-smede tackice po telu (izgled barsuna)', 'Trljanje o predmete', 'Ubrzano disanje', 'Stiskanje peraja uz telo', 'Gubitak boje', 'Gubitak apetita', 'Letargija', 'Ljustenje koze'],
     guidelines: [
@@ -777,7 +778,7 @@ const List<PetCondition> conditionsDatabase = [
     id: 'columnaris',
     name: 'Kolumnaroza (Mouth Fungus)',
     description: 'Kolumnaroza je bakterijska infekcija izazvana Flavobacterium columnare koja se cesto pogresno naziva gljivicnom infekcijom jer formira belicaste pamucaste naslage na ustima, telu i skrgama riba. Bakterija je oportunisticka i napada ribe sa oslabljenim imunim sistemom usled stresa, loseg kvaliteta vode ili povreda. Bolest moze biti akutna (smrt u roku od 24-48 sati) ili hronicna sa sporijim napredovanjem.',
-    affectedSpecies: [PetType.fish],
+    affectedSpecies: [PetType.aquarium],
     icon: '🦠',
     symptoms: ['Belicaste naslage na ustima', 'Pamucaste mrlje na telu', 'Erozija koze', 'Ostecenje skrga', 'Ubrzano disanje', 'Gubitak apetita', 'Letargija', 'Razderani peraji'],
     guidelines: [
@@ -788,5 +789,250 @@ const List<PetCondition> conditionsDatabase = [
     goodIngredients: ['vitamin c', 'beli luk', 'spirulina', 'kvalitetna hrana'],
     badIngredients: ['niskokvalitetna hrana', 'prekomerno hranjenje'],
     treatment: 'Lecenje kolumnaroze zahteva brzu reakciju jer akutni oblik moze biti fatalan u roku od 1-2 dana. Kanamicin ili Nitrofurazon (Furan-2) su antibiotici prvog izbora koji se dodaju u vodu. Oxytetracycline se moze koristiti kao alternativa. Snizavanje temperature vode za 2-3°C usporava razmnozavanje bakterije (suprotno od lecenja ich-a). So u dozi od 1-2 g/L pomaze u smanjenju osmotskog stresa. Metilen plavo se koristi za prevenciju sekundarnih infekcija. Poboljsanje kvaliteta vode je kljucno — parcijalna zamena vode, ciscenje filtera i testiranje parametara. Izolacija obolele ribe u bolnicki akvarijum je preporucljiva. Prevencija ukljucuje odrzavanje stabilnih parametara vode, izbegavanje prenapucenosti i stresa, i karantin novih riba.',
+  ),
+  // ==================== ZECEVI I KUNICI ====================
+  PetCondition(
+    id: 'gi_stasis',
+    name: 'GI staza (zastoj creva)',
+    description: 'Gastrointestinalna staza je najcesca i potencijalno fatalna bolest kunica kod koje dolazi do usporavanja ili potpunog prestanka motiliteta creva. Uzroci ukljucuju nedostatak vlakana u ishrani, dehidraciju, stres, bol ili nedovoljnu fizicku aktivnost. Bez pravovremenog lecenja, nagomilani gas i toksini iz creva mogu dovesti do sepse i smrti u roku od 24-48 sati.',
+    affectedSpecies: [PetType.rabbit],
+    icon: '🐇',
+    symptoms: ['Prestanak jedenja', 'Odsustvo izmeta ili sitne tvrde kuglice', 'Nadut stomak', 'Skrgutanje zubima (znak bola)', 'Letargija', 'Zgrcen polozaj tela', 'Smanjena aktivnost', 'Hladne usi'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Vlakna', recommendation: 'high', reason: 'Seno je osnova ishrane i kljucno za motilitet creva.'),
+      DietaryGuideline(nutrient: 'Voda', recommendation: 'high', reason: 'Hidratacija je neophodna za pokretanje creva.'),
+      DietaryGuideline(nutrient: 'Secer', recommendation: 'avoid', reason: 'Slatkisi i voce pogorsavaju fermentaciju u crevima.'),
+    ],
+    goodIngredients: ['timotejka seno', 'livadsko seno', 'svezo lisnato povrce', 'korijander', 'celjer', 'mirodzija'],
+    badIngredients: ['secer', 'voce (u akutnoj fazi)', 'zitarice', 'hleb', 'testenina', 'kukuruz'],
+    treatment: 'GI staza je hitno stanje koje zahteva brzu veterinarsku intervenciju. Metoklopramid ili Cisaprid se koriste kao prokinetici za pokretanje motiliteta creva. Simethicone (Sab Simplex) se daje oralno za razlaganje gasova u crevima i smanjenje nadutosti. Subkutana ili intravenska infuzija fizioloskog rastvora je neophodna za rehidraciju i omeksavanje sadrzaja creva. Analgetici poput Meloksikama (Metacam) ili Buprenorfina se daju za kontrolu bola jer bol dodatno usporava crevni motilitet. Blaga masaza stomaka u krug moze pomoci u pokretanju gasova. Prisilno hranjenje kasastom hranom (Critical Care) putem sprica je neophodno ako kunic odbija da jede. Neogranicen pristup senu i svezem lisnatom povrcu treba ponuditi cim se apetit vrati. Obavezno posetite veterinara odmah jer je GI staza zivotno ugrozavajuce stanje.',
+  ),
+  PetCondition(
+    id: 'myxomatosis',
+    name: 'Miksomatoza',
+    description: 'Miksomatoza je teska virusna bolest kunica izazvana Myxoma virusom iz porodice Poxviridae, koja se prenosi ubodom komaraca, buva ili direktnim kontaktom sa zarazenom zivotinjom. Karakterise se pojavom otoka i miksomatoznih tumora na glavi, ocima, usima, genitalijama i anogenitalnom podrucju. Smrtnost kod nevakcinisanih kunica je izuzetno visoka, cesto preko 90%.',
+    affectedSpecies: [PetType.rabbit],
+    icon: '🦟',
+    symptoms: ['Otoci oko ociju i nosa', 'Gnojni iscedak iz ociju', 'Otecene usi', 'Otoci na genitalijama', 'Povisena temperatura', 'Gubitak apetita', 'Letargija', 'Otezano disanje'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Vlakna', recommendation: 'high', reason: 'Seno odrzava rad creva tokom bolesti.'),
+      DietaryGuideline(nutrient: 'Voda', recommendation: 'high', reason: 'Hidratacija je kljucna za oporavak.'),
+      DietaryGuideline(nutrient: 'Vitamin C', recommendation: 'high', reason: 'Podrzava imuni sistem u borbi sa virusom.'),
+    ],
+    goodIngredients: ['timotejka seno', 'svezo lisnato povrce', 'korijander', 'persun', 'vitamin c'],
+    badIngredients: ['secer', 'zitarice', 'preradjena hrana'],
+    treatment: 'Ne postoji specifican antivirusni lek za miksomatozu — lecenje je iskljucivo suportivno i simptomatsko. Subkutana infuzija fizioloskog rastvora se daje za odrzavanje hidratacije. Antibiotici poput Enrofloksacina (Baytril) ili Trimetoprim-sulfa se koriste za prevenciju i lecenje sekundarnih bakterijskih infekcija. Nesteroidni antiinflamatorni lekovi poput Meloksikama smanjuju upalu i bol. Oci se ispiraju fiziloskim rastvorom i tretiraju antibiotskim kapima (Gentamicin ili Hloramfenikol kapi). Prisilno hranjenje kasastom hranom (Critical Care) je neophodno kod kunica koje odbijaju hranu. Vakcinacija je jedina pouzdana prevencija — primarna vakcinacija se daje od 5 nedelja starosti sa godisnjim busterom. Obavezno posetite veterinara specijalistu za egzoticne zivotinje jer je prognoza ozbiljna i zahteva intenzivnu negu.',
+  ),
+  PetCondition(
+    id: 'pasteurellosis',
+    name: 'Pasteureloza (Snuffles)',
+    description: 'Pasteureloza je najcesca bakterijska infekcija kunica izazvana bakterijom Pasteurella multocida koja kolonizuje gornje disajne puteve. Mnogi kunici su asimptomatski nosioci, a bolest se aktivira u uslovima stresa, losih higijenskih uslova ili oslabljenog imuniteta. Infekcija moze zahvatiti sinuse, srednje uho, pluca, kozu, zglobove i reproduktivne organe.',
+    affectedSpecies: [PetType.rabbit],
+    icon: '🤧',
+    symptoms: ['Beli ili zuckasti iscedak iz nosa', 'Kijanje', 'Mokre prednje sape (brisanje nosa)', 'Hronicno suzenje ociju', 'Naginjanje glave (infekcija uha)', 'Otezano disanje', 'Apscesi pod kozom', 'Gubitak apetita'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Vlakna', recommendation: 'high', reason: 'Seno odrzava zdravlje creva i imunitet.'),
+      DietaryGuideline(nutrient: 'Vitamin C', recommendation: 'high', reason: 'Podrzava imuni odgovor.'),
+      DietaryGuideline(nutrient: 'Svezo povrce', recommendation: 'high', reason: 'Prirodni izvori vitamina i minerala.'),
+    ],
+    goodIngredients: ['timotejka seno', 'svezo lisnato povrce', 'persun', 'korijander', 'brokoli'],
+    badIngredients: ['secer', 'zitarice', 'hleb', 'preradjena hrana'],
+    treatment: 'Lecenje pasteureloza zahteva dugotrajnu antibiotsku terapiju od minimum 14-30 dana. Enrofloksacin (Baytril) je antibiotik prvog izbora za kunice i daje se oralno ili injekciono. Trimetoprim-sulfa je alternativa, narocito kod mladih kunica kod kojih fluorohinoloni mogu ostetiti hrskavicu. Azitromicin se koristi kod hronicnih slucajeva i infekcija srednjeg uha. Kod apscesa, hirursko otvaranje i drenaža su neophodni uz lokalno ispiranje rastvorom Hlorheksidina. Nebulizacija (inhalacija) fiziloskim rastvorom sa ili bez Gentamicina pomaze kod respiratornih simptoma. Probiotici se obavezno daju tokom antibiotske terapije jer antibiotici mogu poremetiti osetljivu crevnu floru kunica. Obavezno posetite veterinara specijalistu za egzoticne zivotinje za kulturu i antibiogram iz nosnog brisa radi ciljanog izbora antibiotika.',
+  ),
+  PetCondition(
+    id: 'dental_rabbit',
+    name: 'Malokluzija zuba',
+    description: 'Malokluzija (nepravilan zagrizam) i prerastanje zuba je cest problem kod kunica jer njihovi zubi rastu kontinuirano tokom celog zivota brzinom od 2-3 mm nedeljno. Ako zubi nisu pravilno poravnati ili kunic ne dobija dovoljno sena za prirodno habanje, zubi prerastaju i formiraju ostre ivice (spikule) koje povredjuju jezik, obraze i desni. Bolest moze zahvatiti i sekutice i kutnjake, a nelecena dovodi do apscesa vilice i nemogucnosti hranjenja.',
+    affectedSpecies: [PetType.rabbit],
+    icon: '🦷',
+    symptoms: ['Gubitak apetita', 'Ispustanje hrane iz usta', 'Prekomerno curenje pljuvacke', 'Mokra brada i vrat', 'Gubitak tezine', 'Skrgutanje zubima', 'Otoci na vilici (apscesi)', 'Suzenje ociju (kod prerastanja korena zuba)'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Vlakna', recommendation: 'high', reason: 'Seno je kljucno za prirodno habanje zuba.'),
+      DietaryGuideline(nutrient: 'Kalcijum', recommendation: 'moderate', reason: 'Umereni kalcijum za zdravlje kostiju vilice.'),
+      DietaryGuideline(nutrient: 'Vitamin D', recommendation: 'moderate', reason: 'Podrzava metabolizam kalcijuma i zdravlje zuba.'),
+    ],
+    goodIngredients: ['timotejka seno', 'livadsko seno', 'lisnato povrce', 'grancice vrbe ili jabuke', 'celjer'],
+    badIngredients: ['meka hrana', 'pelet kao jedina hrana', 'secer', 'zitarice', 'hleb'],
+    treatment: 'Lecenje malokluzije zahteva redovno skracivanje i turpijanje zuba kod veterinara pod sedacijom ili opstom anestezijom. Prerasle sekutice se skracuju dijamantskim diskom ili zubnom busilom — nikada klestima jer to moze izazvati frakturu zuba. Spikule na kutnjacima se uklanjaju specijalnim zubarskim instrumentima uz pomoc otoskopa ili endoskopa za vizualizaciju. Apscesi vilice zahtevaju hirursko otvaranje, kiretazu i dugotrajnu antibiotsku terapiju Enrofloksacinom ili Penicilin G injekcijama. Meloksikam se daje za kontrolu bola pre i posle zahvata. Prisilno hranjenje kasastom hranom (Critical Care) je neophodno dok se kunic ne oporavi dovoljno da sam jede. Neogranicen pristup kvalitetnom senu je najvaznija preventivna mera jer zvakanje sena prirodno haba zube. Obavezno posetite veterinara specijalistu za egzoticne zivotinje za rendgen lobanje radi procene korena zuba i kostiju vilice.',
+  ),
+  PetCondition(
+    id: 'encephalitozoonosis',
+    name: 'Encefalitozonooza',
+    description: 'Encefalitozonooza je parazitska bolest kunica izazvana mikrosporidijom Encephalitozoon cuniculi koja inficira celije bubrega, mozga i ocnog sociva. Vecina kunica se zarazi u ranom zivotu od majke preko urina, a parazit moze godinama biti latentan pre nego sto izazove simptome. Aktivacija bolesti se desava u uslovima stresa ili oslabljenog imuniteta, a najkarakteristicniji simptom je naginjanje glave (torticollis).',
+    affectedSpecies: [PetType.rabbit],
+    icon: '🧠',
+    symptoms: ['Naginjanje glave na jednu stranu', 'Gubitak ravnoteze', 'Kotrljanje (rolling)', 'Nistagmus (brzo pomeranje ociju)', 'Slabost zadnjih nogu', 'Inkontinencija urina', 'Belo zamucenje u oku (katarakta)', 'Gubitak apetita'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Vlakna', recommendation: 'high', reason: 'Seno odrzava crevni motilitet tokom bolesti.'),
+      DietaryGuideline(nutrient: 'Voda', recommendation: 'high', reason: 'Hidratacija podrzava bubreznu funkciju.'),
+      DietaryGuideline(nutrient: 'Vitamin E', recommendation: 'high', reason: 'Antioksidans koji stiti nervno tkivo.'),
+      DietaryGuideline(nutrient: 'Vitamin B', recommendation: 'high', reason: 'Podrzava oporavak nervnog sistema.'),
+    ],
+    goodIngredients: ['timotejka seno', 'svezo lisnato povrce', 'vitamin e', 'vitamin b kompleks', 'korijander'],
+    badIngredients: ['secer', 'zitarice', 'preradjena hrana', 'hleb'],
+    treatment: 'Lecenje encefalitozonoze zahteva kombinaciju antiparazitske i antiinflamatorne terapije. Fenbendazol (Panacur) u dozi od 20 mg/kg dnevno tokom minimum 28 dana je lek prvog izbora koji ubija parazita. Kortikosteroidi poput Deksametazona se daju u akutnoj fazi za smanjenje upale mozga i vestibularnog aparata, ali kratko jer suprimiraju imunitet. Meloksikam se koristi kao antiinflamatorni lek za dugotrajnu kontrolu upale. Meklizin ili Dimenhinat (Dramamine) pomazu u kontroli vertiga i mucnine. Subkutana infuzija fizioloskog rastvora se daje za odrzavanje hidratacije, narocito ako kunic ne pije dovoljno. Prisilno hranjenje kasastom hranom (Critical Care) je neophodno kod kunica sa teskim vestibularnim simptomima koje ne mogu same da jedu. Mekana podloga u kavezu sprecava povrede tokom epizoda kotrljanja. Obavezno posetite veterinara specijalistu za egzoticne zivotinje za seroloski test na E. cuniculi i procenu bubrezne funkcije.',
+  ),
+  // ==================== GLODARI ====================
+  PetCondition(
+    id: 'wet_tail',
+    name: 'Mokri rep (Wet Tail)',
+    description: 'Mokri rep je teska bakterijska infekcija creva kod hrcaka izazvana najcesce bakterijom Lawsonia intracellularis koja uzrokuje proliferativni ileitis. Bolest je narocito cesta kod mladih hrcaka (3-8 nedelja starosti) i cesto se javlja nakon stresa poput odvajanja od majke, transporta ili promene okruzenja. Karakterise se vodenim prolivom koji kvasi zadnji deo tela, a bez lecenja smrtnost je izuzetno visoka.',
+    affectedSpecies: [PetType.rodent],
+    icon: '🐹',
+    symptoms: ['Mokar i prljav zadnji deo tela', 'Vodeni proliv', 'Gubitak apetita', 'Letargija', 'Dehidracija', 'Zgrcen polozaj tela', 'Razdrazljivost na dodir', 'Rektalni prolaps (u tezim slucajevima)'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Vlakna', recommendation: 'high', reason: 'Seno pomaze normalizaciji crevne flore.'),
+      DietaryGuideline(nutrient: 'Voda', recommendation: 'high', reason: 'Rehidracija je kriticna za prezivljavanje.'),
+      DietaryGuideline(nutrient: 'Probiotici', recommendation: 'high', reason: 'Pomazu obnovi zdrave crevne flore.'),
+    ],
+    goodIngredients: ['timotejka seno', 'kuvani pirinac', 'probiotici', 'elektroliti', 'kamilica caj (razblazeni)'],
+    badIngredients: ['svezo povrce (u akutnoj fazi)', 'voce', 'secer', 'masna hrana'],
+    treatment: 'Mokri rep je hitno stanje koje zahteva brzu veterinarsku intervenciju. Trimetoprim-sulfa ili Enrofloksacin su antibiotici prvog izbora koji se daju oralno putem sprica. Subkutana infuzija fizioloskog rastvora ili Ringerovog laktata je neophodna za korekciju dehidracije koja je najcesci uzrok smrti. Oralna rehidracija rastvorom elektrolita (Pedialyte razblazeni) se daje izmedju infuzija. Probiotici se dodaju u ishranu za obnovu crevne mikroflore nakon antibiotske terapije. Hrcak se drzi na toplom i suvom mestu, a kavez se temeljno cisti i dezinfikuje svakodnevno. Prisilno hranjenje kasastom hranom putem male sprice moze biti neophodno ako hrcak odbija hranu. Obavezno posetite veterinara specijalistu za male zivotinje jer je prognoza ozbiljna i svaki sat kasnjenja smanjuje sanse za oporavak.',
+  ),
+  PetCondition(
+    id: 'respiratory_rodent',
+    name: 'Respiratorne infekcije',
+    description: 'Hronicna respiratorna bolest kod pacova je izuzetno cesta i najcesce izazvana bakterijom Mycoplasma pulmonis koja kolonizuje disajne puteve. Gotovo svi pacovi su nosioci ove bakterije, a bolest se aktivira pod uticajem stresa, losih uslova drzanja, amonijaka iz neciste prostirke ili sekundarnih infekcija. Bolest je progresivna i moze dovesti do pneumonije, apscesa pluca i respiratorne insuficijencije.',
+    affectedSpecies: [PetType.rodent],
+    icon: '🫁',
+    symptoms: ['Kijanje', 'Crvenkasti iscedak iz nosa (porfirin)', 'Hrkanje i zvizduci pri disanju', 'Otezano disanje', 'Naginjanje glave', 'Gubitak apetita', 'Nakostresen krzno', 'Letargija'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Vitamin C', recommendation: 'high', reason: 'Podrzava imuni sistem.'),
+      DietaryGuideline(nutrient: 'Proteini', recommendation: 'high', reason: 'Potrebni za borbu protiv infekcije.'),
+      DietaryGuideline(nutrient: 'Antioksidansi', recommendation: 'high', reason: 'Smanjuju oksidativni stres u plucima.'),
+    ],
+    goodIngredients: ['svezo povrce', 'brokoli', 'paprika', 'kvalitetni pelet', 'jaja (kuvana)'],
+    badIngredients: ['prasnjava hrana', 'plesniva hrana', 'secer'],
+    treatment: 'Lecenje respiratornih infekcija kod pacova zahteva dugotrajnu antibiotsku terapiju. Doksiciklin u kombinaciji sa Enrofloksacinom (Baytril) je zlatni standard za lecenje mikoplazmoza i daje se oralno tokom minimum 2-4 nedelje. Azitromicin je alternativa za pacove koji ne tolerisu Doksiciklin. Kod teske pneumonije, Gentamicin se moze dati injekciono u kombinaciji sa oralnim antibioticima. Nebulizacija (inhalacija) fiziloskim rastvorom sa ili bez Gentamicina pomaze u razblaziivanju sekreta u disajnim putevima. Bronhodilatatori poput Aminofilina ili Salbutamola se koriste kod teskog bronhospazma. Meloksikam se daje za smanjenje upale i bola. Poboljsanje uslova drzanja je kljucno — koristiti prostirku bez prasine (papirna prostirka umesto piljevine), redovno cistiti kavez i obezbediti dobru ventilaciju. Obavezno posetite veterinara specijalistu za egzoticne zivotinje za rendgen grudnog kosa i plan lecenja.',
+  ),
+  PetCondition(
+    id: 'bumblefoot_rodent',
+    name: 'Pododermatitis (Bumblefoot)',
+    description: 'Pododermatitis je bolna upala i infekcija stopala kod zamoraca i drugih glodara koja nastaje usled pritiska na tabane pri hodanju po tvrdim ili abrazivnim povrsinama. Pocinje kao crvenilo i zadebljanje koze na tabanima, a napreduje do otvorenih rana, apscesa i infekcije kostiju (osteomijelitis). Gojaznost, nedostatak vitamina C, zicane podloge u kavezu i nedovoljna higijena su glavni faktori rizika.',
+    affectedSpecies: [PetType.rodent],
+    icon: '🦶',
+    symptoms: ['Otecena i crvena stopala', 'Hramanje', 'Otvorene rane na tabanima', 'Kruste i zadebljanja na stopalima', 'Smanjena aktivnost', 'Gubitak apetita', 'Bolna reakcija na dodir stopala', 'Gnojni iscedak iz rana'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Vitamin C', recommendation: 'high', reason: 'Esencijalan za zarastanje rana kod zamoraca.'),
+      DietaryGuideline(nutrient: 'Proteini', recommendation: 'high', reason: 'Potrebni za regeneraciju tkiva.'),
+      DietaryGuideline(nutrient: 'Kalorije', recommendation: 'moderate', reason: 'Odrzavanje idealne tezine smanjuje pritisak na stopala.'),
+    ],
+    goodIngredients: ['paprika', 'brokoli', 'kelj', 'persun', 'vitamin c suplement', 'timotejka seno'],
+    badIngredients: ['secer', 'masna hrana', 'prekomerne kolicine voca'],
+    treatment: 'Lecenje pododermatitisa zavisi od stadijuma bolesti. U ranom stadijumu, promena podloge na mekanu (flis deke, papirna prostirka) i smanjenje telesne mase mogu biti dovoljni. Rane se ciste rastvorom Hlorheksidina ili Povidon-joda i previjaju sterilnim zavojima sa antibiotskom masti (Mupirocin ili Srebrni sulfadiazin). Sistemski antibiotici poput Enrofloksacina ili Trimetoprim-sulfa se daju kod dubljih infekcija. Meloksikam se koristi za kontrolu bola i upale. Kod zamoraca, suplementacija vitaminom C (50-100 mg dnevno) je obavezna jer ubrzava zarastanje rana. U tezim slucajevima sa osteomijelitisom, potrebna je dugotrajna antibiotska terapija od 6-8 nedelja i ponekad hirurski debridman. Obavezno posetite veterinara specijalistu za egzoticne zivotinje za rendgen stopala radi procene zahvacenosti kostiju.',
+  ),
+  PetCondition(
+    id: 'scurvy',
+    name: 'Skorbut (nedostatak vitamina C)',
+    description: 'Skorbut je nutritivna bolest zamoraca uzrokovana nedostatkom vitamina C (askorbinske kiseline) u ishrani. Za razliku od vecine sisara, zamorci ne mogu sami sintetisati vitamin C jer im nedostaje enzim L-gulonolakton oksidaza, pa ga moraju unositi hranom svakodnevno. Deficit dovodi do poremecaja sinteze kolagena sto uzrokuje slabost krvnih sudova, zglobova, kostiju i desni.',
+    affectedSpecies: [PetType.rodent],
+    icon: '🍊',
+    symptoms: ['Hramanje i bolni zglobovi', 'Oteceni zglobovi', 'Krvarenje desni', 'Gubitak apetita', 'Letargija', 'Lose stanje krzna', 'Sporo zarastanje rana', 'Proliv'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Vitamin C', recommendation: 'high', reason: 'Direktna nadoknada nedostatka — minimum 30-50 mg dnevno.'),
+      DietaryGuideline(nutrient: 'Svezo povrce', recommendation: 'high', reason: 'Prirodni izvori vitamina C.'),
+      DietaryGuideline(nutrient: 'Vlakna', recommendation: 'high', reason: 'Seno je osnova ishrane zamoraca.'),
+    ],
+    goodIngredients: ['paprika (crvena i zelena)', 'brokoli', 'kelj', 'persun', 'kivi', 'jagode', 'timotejka seno'],
+    badIngredients: ['stari pelet (gubitak vitamina C)', 'preradjena hrana', 'secer', 'zitarice'],
+    treatment: 'Lecenje skorbuta pocinje hitnom suplementacijom vitaminom C. Askorbinska kiselina se daje oralno u dozi od 50-100 mg dnevno putem sprica direktno u usta ili injekciono (subkutano) u dozi od 50-100 mg/kg kod teskih slucajeva. Poboljsanje se obicno primecuje vec nakon 4-7 dana terapije. Meloksikam se daje za kontrolu bola u zglobovima. Ishrana se koriguje — svakodnevno nuditi svezo povrce bogato vitaminom C (paprika, brokoli, kelj, persun). Kvalitetni pelet za zamorce obogacen vitaminom C se daje svakodnevno, ali treba znati da vitamin C u peletu gubi potentnost 90 dana nakon otvaranja pakovanja. Vitamin C se ne dodaje u vodu za pice jer se brzo razgradjuje i menja ukus vode. Prevencija je jednostavna — 30-50 mg vitamina C dnevno kroz ishranu ili suplement. Obavezno posetite veterinara za krvne analize i rendgen zglobova radi procene stepena ostecenja.',
+  ),
+  PetCondition(
+    id: 'mites_rodent',
+    name: 'Suga (grinje)',
+    description: 'Infestacija grinjama je cest kozni problem kod glodara izazvan razlicitim vrstama ektoparazita — Trixacarus caviae (sarkoptesna suga kod zamoraca), Demodex spp. (demodikoza), Myocoptes i Myobia (krzne grinje kod miseva i pacova). Grinje se uvlace u kozu ili zive na povrsini krzna, izazivajuci intenzivan svrab, gubitak dlake i kozne lezije. Stres i oslabljen imunitet pogoduju razmnozavanju parazita.',
+    affectedSpecies: [PetType.rodent],
+    icon: '🔬',
+    symptoms: ['Intenzivan svrab', 'Gubitak krzna', 'Crvenilo i ljuspanje koze', 'Kruste i rane od cesanja', 'Zadebljanje koze', 'Nemir i razdrazljivost', 'Gubitak tezine', 'Epileptiformni napadi (kod teske infestacije zamoraca)'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Vitamin C', recommendation: 'high', reason: 'Podrzava imunitet i zdravlje koze kod zamoraca.'),
+      DietaryGuideline(nutrient: 'Omega-3', recommendation: 'high', reason: 'Pomaze oporavku koze i krzna.'),
+      DietaryGuideline(nutrient: 'Proteini', recommendation: 'high', reason: 'Potrebni za regeneraciju koze i krzna.'),
+    ],
+    goodIngredients: ['paprika', 'brokoli', 'laneno seme', 'timotejka seno', 'kvalitetni pelet'],
+    badIngredients: ['secer', 'preradjena hrana', 'niskokvalitetna hrana'],
+    treatment: 'Lecenje suge kod glodara zavisi od vrste grinje. Ivermektin je lek prvog izbora za vecinu grinja kod glodara i daje se oralno ili injekciono (subkutano) u dozi od 0.2-0.4 mg/kg, ponovljeno 2-3 puta u razmacima od 7-14 dana. Selamektin (Revolution) se nanosi topikalno na kozu izmedju lopatica i efikasan je za Trixacarus i krzne grinje. Kod sekundarnih bakterijskih infekcija koze, antibiotici poput Enrofloksacina se daju sistemski. Meloksikam se koristi za kontrolu bola i upale koze. Kavez se temeljno cisti i dezinfikuje, a sva prostirka se menja jer grinje mogu preziveti u okruzenju. Svi zamorci ili glodari u istom kavezu se lece istovremeno cak i ako nemaju simptome. Suplementacija vitaminom C kod zamoraca je obavezna jer deficit pogorsava infestaciju. Obavezno posetite veterinara za kozni strugotinski test radi identifikacije vrste grinje i potvrdde dijagnoze.',
+  ),
+  // ==================== TERARISTIKA ====================
+  PetCondition(
+    id: 'mbd',
+    name: 'Metabolicka bolest kostiju (MBD)',
+    description: 'Metabolicka bolest kostiju je najcesci nutritivni poremecaj kod reptila u zatocenistvu, uzrokovan nedostatkom kalcijuma, neadekvatnim odnosom kalcijuma i fosfora u ishrani ili nedovoljnom izlozenoscu UVB zracenju koje je neophodno za sintezu vitamina D3. Bez vitamina D3, reptil ne moze apsorbovati kalcijum iz hrane, sto dovodi do demineralizacije kostiju, deformiteta skeleta i metabolickih poremecaja.',
+    affectedSpecies: [PetType.terrarium],
+    icon: '🦎',
+    symptoms: ['Mekane i savitljive kosti', 'Deformiteti vilice (gumasta vilica)', 'Oteceni zglobovi', 'Tremor i misicni trzaji', 'Letargija', 'Gubitak apetita', 'Nemogucnost podizanja tela od podloge', 'Frakture pri minimalnom pritisku'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Kalcijum', recommendation: 'high', reason: 'Direktna nadoknada nedostatka kalcijuma.'),
+      DietaryGuideline(nutrient: 'Vitamin D3', recommendation: 'high', reason: 'Neophodan za apsorpciju kalcijuma.'),
+      DietaryGuideline(nutrient: 'Fosfor', recommendation: 'low', reason: 'Visak fosfora blokira apsorpciju kalcijuma.'),
+    ],
+    goodIngredients: ['kalcijum karbonat u prahu', 'insekti posuti kalcijumom', 'lisnato povrce (kelj, blitva)', 'UVB osvetljenje'],
+    badIngredients: ['spanac (oksalati vezuju kalcijum)', 'hrana bez kalcijuma', 'samo mesna ishrana bez suplemenata'],
+    treatment: 'Lecenje MBD-a zavisi od tezine bolesti. Kalcijum-glukonat se daje injekciono (intramuskulrno ili subkutano) kod teskih slucajeva sa tremorima i tetanijom. Oralna suplementacija kalcijum-karbonatom u prahu se daje svakodnevno posipanjem po hrani (insektima ili povrcu). Vitamin D3 injekcija se daje kod reptila koji nisu imali pristup UVB osvetljenju. Instalacija kvalitetne UVB lampe (10-12% UVB za pustinjske vrste, 5-6% za sumske) je obavezna i lampa se menja svakih 6-12 meseci. Kod fraktura, imobilizacija i mirovanje su neophodni uz pojacanu suplementaciju kalcijumom. Ishrana se koriguje — insekti se hrane kalcijumom bogatom hranom 24h pre davanja reptilu (gut-loading) i posipaju kalcijumom u prahu. Odnos kalcijuma i fosfora u ishrani treba biti minimum 2:1. Obavezno posetite veterinara specijalistu za reptile za rendgen skeleta i krvne analize (kalcijum, fosfor) radi procene stepena bolesti.',
+  ),
+  PetCondition(
+    id: 'mouth_rot',
+    name: 'Infektivni stomatitis (Mouth Rot)',
+    description: 'Infektivni stomatitis je bakterijska infekcija usne duplje kod reptila izazvana najcesce oportunistickim bakterijama poput Aeromonas, Pseudomonas ili Klebsiella koje napadaju sluznicu usta i desni. Bolest je obicno sekundarna — nastaje usled stresa, losih uslova drzanja, neadekvatne temperature, povreda usta ili oslabljenog imuniteta. Nelecena infekcija moze napredovati do osteomijelitisa vilice i sepse.',
+    affectedSpecies: [PetType.terrarium],
+    icon: '👄',
+    symptoms: ['Crvenilo i otecenost desni', 'Zuckasti ili belicasti gnojni naslage u ustima', 'Gubitak apetita', 'Odbijanje hrane', 'Curenje pljuvacke ili gnoja iz usta', 'Otecena vilica', 'Los zadah', 'Gubitak zuba'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Vitamin C', recommendation: 'high', reason: 'Podrzava zarastanje sluznice.'),
+      DietaryGuideline(nutrient: 'Vitamin A', recommendation: 'high', reason: 'Esencijalan za zdravlje epitelijalnih tkiva.'),
+      DietaryGuideline(nutrient: 'Proteini', recommendation: 'high', reason: 'Potrebni za regeneraciju tkiva.'),
+    ],
+    goodIngredients: ['insekti posuti vitaminima', 'lisnato povrce', 'vitamin a suplement', 'meka hrana za lakse gutanje'],
+    badIngredients: ['tvrda hrana koja moze povrediti usta', 'hrana bez vitamina'],
+    treatment: 'Lecenje infektivnog stomatitisa zahteva kombinaciju lokalne i sistemske terapije. Usna duplja se svakodnevno ispira razblazenim rastvorom Hlorheksidina (0.05%) ili Povidon-joda za uklanjanje gnojnih naslaga. Sistemski antibiotici poput Ceftazidima, Enrofloksacina ili Amikacina se daju injekciono na osnovu kulture i antibiograma. Lokalna primena antibiotske masti (Srebrni sulfadiazin) na lezije u ustima ubrzava zarastanje. Meloksikam se daje za kontrolu bola i upale. Korekcija uslova drzanja je kljucna — temperatura u terarijumu mora biti u optimalnom opsegu za vrstu jer nizak temperatura suprimira imuni sistem reptila. Prisilno hranjenje sondom moze biti neophodno kod reptila koji potpuno odbijaju hranu. Suplementacija vitaminom A je vazna jer deficit pogoduje nastanku stomatitisa. Obavezno posetite veterinara specijalistu za reptile za bris usne duplje, kulturu i antibiogram radi ciljanog izbora antibiotika.',
+  ),
+  PetCondition(
+    id: 'respiratory_reptile',
+    name: 'Respiratorna infekcija',
+    description: 'Respiratorne infekcije (pneumonija) kod reptila su ceste i potencijalno fatalne bolesti najcesce izazvane bakterijama (Aeromonas, Pseudomonas, Klebsiella), a redje virusima ili gljivicama. Glavni predisponirajuci faktori su neadekvatna temperatura u terarijumu (preniska temperatura suprimira imuni sistem), previsoka vlaznost, losa ventilacija i stres. Reptili nemaju dijafragmu pa ne mogu kasljati, sto otezava ciscenje disajnih puteva.',
+    affectedSpecies: [PetType.terrarium],
+    icon: '🌡️',
+    symptoms: ['Disanje otvorenih usta', 'Sluzavi ili penusavi iscedak iz nosa', 'Zvuci pri disanju (hrkanje, zvizduci)', 'Ispruzen vrat pri disanju', 'Gubitak apetita', 'Letargija', 'Plutanje na jednu stranu u vodi (kod vodenih kornjaca)', 'Naduvane obraze ili grlo'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Vitamin A', recommendation: 'high', reason: 'Stiti sluznice respiratornog trakta.'),
+      DietaryGuideline(nutrient: 'Vitamin C', recommendation: 'high', reason: 'Podrzava imuni odgovor.'),
+      DietaryGuideline(nutrient: 'Kalcijum', recommendation: 'high', reason: 'Odrzava opsti imunitet i zdravlje.'),
+    ],
+    goodIngredients: ['insekti posuti vitaminima', 'lisnato povrce', 'vitamin a suplement', 'kvalitetni pelet za kornjace'],
+    badIngredients: ['hrana bez vitamina', 'samo jedna vrsta hrane'],
+    treatment: 'Lecenje respiratornih infekcija kod reptila zahteva korekciju uslova drzanja kao prvi korak — temperatura se povecava na gornju granicu optimalnog opsega za vrstu (POTZ — Preferred Optimum Temperature Zone) jer toplota stimulise imuni sistem reptila. Sistemski antibiotici poput Ceftazidima (injekciono svaka 72 sata) ili Enrofloksacina su osnova terapije. Amikacin se koristi kod teskih infekcija ali zahteva pazljivo doziranje zbog nefrotoksicnosti. Nebulizacija (inhalacija) fiziloskim rastvorom sa ili bez Gentamicina pomaze u razblaziivanju sekreta u disajnim putevima. Vlaznost u terarijumu se prilagodjava — smanjuje kod vrsta iz suvih stanista, a ventilacija se poboljsava. Prisilno hranjenje sondom je neophodno kod reptila koji dugo odbijaju hranu. Suplementacija vitaminom A je vazna jer deficit predisponira respiratorne infekcije. Obavezno posetite veterinara specijalistu za reptile za rendgen pluca, bris iz traheje i kulturu radi ciljanog izbora antibiotika.',
+  ),
+  PetCondition(
+    id: 'dysecdysis',
+    name: 'Poremecaj presvlacenja (Dysecdysis)',
+    description: 'Dysecdysis je poremecaj normalnog procesa presvlacenja (svedjanja) koze kod zmija, gustera i gekona, pri cemu se stara koza ne skida u potpunosti vec ostaje zalepljena za telo. Najcesci uzroci su preniska vlaznost u terarijumu, dehidracija, nedostatak hrapavih povrsina za trljanje, ektoparaziti, kozne infekcije ili sistemske bolesti. Zaostala koza moze izazvati konstrikciju prstiju i repa (dovodi do nekroze), infekciju ociju (zaostale ocne kapice) i sekundarne kozne infekcije.',
+    affectedSpecies: [PetType.terrarium],
+    icon: '🐍',
+    symptoms: ['Zaostala koza na telu', 'Zamucene oci koje ne postaju bistre posle presvlacenja', 'Zaostale ocne kapice (spectacle)', 'Suva i pucala koza', 'Konstrikcija prstiju ili repa zaostalom kozom', 'Gubitak apetita pre presvlacenja', 'Razdrazljivost', 'Crvenilo ili infekcija ispod zaostale koze'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Voda', recommendation: 'high', reason: 'Hidratacija je kljucna za normalno presvlacenje.'),
+      DietaryGuideline(nutrient: 'Vitamin A', recommendation: 'high', reason: 'Podrzava zdravlje koze i normalan ciklus presvlacenja.'),
+      DietaryGuideline(nutrient: 'Proteini', recommendation: 'high', reason: 'Potrebni za formiranje nove koze.'),
+      DietaryGuideline(nutrient: 'Omega-3', recommendation: 'moderate', reason: 'Pomaze elasticnosti koze.'),
+    ],
+    goodIngredients: ['insekti posuti vitaminima', 'celi plen (misevi za zmije)', 'vitamin a suplement', 'svezo povrce za biljojede'],
+    badIngredients: ['hrana bez vitamina', 'dehidrirana hrana bez pristupa vodi'],
+    treatment: 'Lecenje dysecdysis-a pocinje povecanjem vlaznosti u terarijumu na 70-80% i obezbedjivanjem posude sa mlakom vodom za kupanje. Zmije i gusteri se potapaju u mlaku vodu (25-28°C) na 15-30 minuta da se zaostala koza omeksa, a zatim se nezno uklanja vlaznom krpom ili pincetom. Zaostale ocne kapice (spectacle) sme uklanjati iskljucivo veterinar jer nepravilno uklanjanje moze ostetiti oko. Kod konstrikcije prstiju ili repa zaostalom kozom, hitno uklanjanje je neophodno da se spreci nekroza tkiva. Antibiotska mast (Srebrni sulfadiazin) se nanosi na mesta gde je koza ostecena ili inficirana. Vitamin A suplement se daje za poboljsanje zdravlja koze i normalizaciju ciklusa presvlacenja. Obezbedjivanje hrapavih povrsina (kamenje, granje) u terarijumu pomaze reptilu da sam skine kozu. Obavezno posetite veterinara specijalistu za reptile ako se dysecdysis ponavlja jer moze ukazivati na sistemsku bolest, ektoparazite ili neadekvatne uslove drzanja.',
+  ),
+  PetCondition(
+    id: 'parasites_reptile',
+    name: 'Paraziti kod reptila',
+    description: 'Parazitske infekcije su izuzetno ceste kod reptila, narocito kod divlje uhvacenih jedinki i onih drzanih u neadekvatnim uslovima. Unutrasnji paraziti ukljucuju nematode (okrugle gliste), cestode (pantljicara), trematode (metilji), protozoe (Cryptosporidium, Coccidia, Entamoeba) i pentastomide. Spoljasnji paraziti ukljucuju grinje (Ophionyssus natricis kod zmija) i krpelje. Paraziti mogu izazvati gubitak tezine, proliv, anemiju i smrt kod tesko infestiranih zivotinja.',
+    affectedSpecies: [PetType.terrarium],
+    icon: '🪱',
+    symptoms: ['Gubitak tezine', 'Proliv ili abnormalan izmet', 'Vidljivi paraziti u izmetu', 'Gubitak apetita', 'Letargija', 'Dehidracija', 'Regurgitacija hrane', 'Vidljive grinje na kozi (sitne crvene ili crne tackice)'],
+    guidelines: [
+      DietaryGuideline(nutrient: 'Proteini', recommendation: 'high', reason: 'Nadoknada gubitka proteina usled parazitizma.'),
+      DietaryGuideline(nutrient: 'Vitamin A', recommendation: 'high', reason: 'Podrzava imunitet i zdravlje sluznica.'),
+      DietaryGuideline(nutrient: 'Kalcijum', recommendation: 'high', reason: 'Odrzava opste zdravlje tokom oporavka.'),
+    ],
+    goodIngredients: ['insekti posuti vitaminima i kalcijumom', 'kvalitetni pelet', 'svezo povrce', 'celi plen za zmije'],
+    badIngredients: ['divlje uhvaceni insekti (mogu nositi parazite)', 'hrana bez suplemenata'],
+    treatment: 'Lecenje parazitskih infekcija kod reptila zavisi od vrste parazita identifikovane mikroskopskim pregledom izmeta. Fenbendazol (Panacur) je antihelmentik prvog izbora za nematode i daje se oralno u dozi od 50-100 mg/kg, ponovljeno nakon 2 nedelje. Prazikvantel se koristi za cestode i trematode. Metronidazol je efikasan protiv protozoa poput Entamoeba i Giardia. Ponazuril (Toltrazuril) se koristi za lecenje kokcidioze. Cryptosporidium je najtezi za lecenje i cesto je neizleciv — Paromomicin se koristi ali sa ogranicenim uspehom. Za spoljasnje parazite (grinje), Ivermektin se daje injekciono ili se koristi Fipronil sprej na kozu, a terarijum se temeljno dezinfikuje. Svi novi reptili treba da prodju karantin od minimum 30 dana sa pregledom izmeta pre uvodjenja u kolekciju. Obavezno posetite veterinara specijalistu za reptile za mikroskopski pregled izmeta (flotacija i direktni razmaz) radi identifikacije parazita i ciljanog lecenja.',
   ),
 ];
