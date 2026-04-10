@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:html' as html;
 import '../data/conditions_database.dart';
 import '../theme/app_theme.dart';
 import '../utils/text_utils.dart';
@@ -93,6 +94,32 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ).animate().fadeIn(delay: 250.ms, duration: 400.ms),
+
+                        const SizedBox(height: 16),
+
+                        // Gde kupiti sekcija
+                        Text('Gde kupiti',
+                          style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.textPrimary),
+                        ).animate().fadeIn(delay: 270.ms, duration: 400.ms),
+                        const SizedBox(height: 10),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              _ShopLink(label: 'Pet Centar', color: const Color(0xFFE65100),
+                                onTap: () => html.window.open('https://www.pet-centar.rs/products/', '_blank')),
+                              const SizedBox(width: 10),
+                              _ShopLink(label: 'PetSpot', color: const Color(0xFF2E7D32),
+                                onTap: () => html.window.open('https://petspot.rs/catalogsearch/result/?q=', '_blank')),
+                              const SizedBox(width: 10),
+                              _ShopLink(label: 'Premium Pet', color: const Color(0xFF1565C0),
+                                onTap: () => html.window.open('https://www.premiumpet.rs/', '_blank')),
+                              const SizedBox(width: 10),
+                              _ShopLink(label: 'Ananas', color: const Color(0xFF6A1B9A),
+                                onTap: () => html.window.open('https://ananas.rs/search?query=hrana+za+ljubimce', '_blank')),
+                            ],
+                          ),
+                        ).animate().fadeIn(delay: 280.ms, duration: 400.ms),
 
                         const SizedBox(height: 24),
 
@@ -244,6 +271,38 @@ class _ConditionCard extends StatelessWidget {
             ),
             const SizedBox(width: 8),
             const Icon(Icons.arrow_forward_ios_rounded, color: AppColors.textMuted, size: 16),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ShopLink extends StatelessWidget {
+  final String label;
+  final Color color;
+  final VoidCallback onTap;
+  const _ShopLink({required this.label, required this.color, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.12),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: color.withOpacity(0.3)),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.shopping_bag_outlined, color: color, size: 18),
+            const SizedBox(width: 6),
+            Text(label, style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: color)),
+            const SizedBox(width: 4),
+            Icon(Icons.open_in_new_rounded, color: color.withOpacity(0.6), size: 14),
           ],
         ),
       ),
