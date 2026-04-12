@@ -119,7 +119,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ]),
                               ),
                             ),
-                            const Spacer(),
+                            Expanded(child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              child: Image.asset('assets/images/banner.png',
+                                fit: BoxFit.contain))),
                             HoverEffect(
                               onTap: () => localeProvider.toggleLocale(),
                               child: Container(
@@ -136,14 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ).animate().fadeIn(duration: 500.ms).slideY(begin: -0.15, end: 0),
 
-                        const SizedBox(height: 12),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(16),
-                          child: Image.asset('assets/images/banner.png',
-                            width: double.infinity,
-                            height: 80,
-                            fit: BoxFit.cover)),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 20),
 
                         // Provera simptoma
                         HoverEffect(
