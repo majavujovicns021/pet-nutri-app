@@ -118,7 +118,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ]),
                               ),
                             ),
-                            const Spacer(),
+                            const SizedBox(width: 8),
+                            Expanded(child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: SizedBox(
+                                height: 48,
+                                child: FittedBox(
+                                  fit: BoxFit.cover,
+                                  clipBehavior: Clip.hardEdge,
+                                  child: Image.asset('assets/images/banner.png'))))),
+                            const SizedBox(width: 8),
                             HoverEffect(
                               onTap: () => localeProvider.toggleLocale(),
                               child: Container(
