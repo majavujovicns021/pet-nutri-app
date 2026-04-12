@@ -355,70 +355,9 @@ class _FoodResultCard extends StatelessWidget {
                 Expanded(child: Text(c, style: GoogleFonts.inter(fontSize: 12, color: AppColors.textSecondary))),
               ]))),
           ],
-          const SizedBox(height: 12),
-          Text('${l.whereToBuy}:', style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w600, color: AppColors.textMuted)),
-          const SizedBox(height: 6),
-          _ScrollableRow(
-            children: [
-              _ShopButton(label: 'Pet Centar', color: const Color(0xFFE65100), onTap: () {
-                final brand = product.brand;
-                final q = (brand.isNotEmpty && brand != 'Nepoznat brend') ? Uri.encodeComponent(brand).toLowerCase().replaceAll('%20', '-') : '';
-                html.window.open('https://www.pet-centar.rs/products/$q', '_blank');
-              }),
-              const SizedBox(width: 8),
-              _ShopButton(label: 'PetSpot', color: const Color(0xFF2E7D32), onTap: () {
-                final brand = product.brand;
-                final q = (brand.isNotEmpty && brand != 'Nepoznat brend') ? Uri.encodeComponent(brand) : '';
-                html.window.open('https://petspot.rs/catalogsearch/result/?q=$q', '_blank');
-              }),
-              const SizedBox(width: 8),
-              _ShopButton(label: 'Premium Pet', color: const Color(0xFF1565C0), onTap: () {
-                final brand = product.brand;
-                final q = (brand.isNotEmpty && brand != 'Nepoznat brend') ? Uri.encodeComponent(brand) : '';
-                html.window.open('https://www.premiumpet.rs/g/f/Search=$q', '_blank');
-              }),
-              const SizedBox(width: 8),
-              _ShopButton(label: 'Ananas', color: const Color(0xFF6A1B9A), onTap: () {
-                final brand = product.brand;
-                final q = (brand.isNotEmpty && brand != 'Nepoznat brend') ? Uri.encodeComponent(brand) : '';
-                html.window.open('https://ananas.rs/search?query=$q', '_blank');
-              }),
-            ],
-          ),
         ]),
       ),
     );
-  }
-}
-
-class _ShopButton extends StatefulWidget {
-  final String label; final Color color; final VoidCallback onTap;
-  const _ShopButton({required this.label, required this.color, required this.onTap});
-  @override
-  State<_ShopButton> createState() => _ShopButtonState();
-}
-
-class _ShopButtonState extends State<_ShopButton> {
-  bool _hovering = false;
-  @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      onEnter: (_) => setState(() => _hovering = true),
-      onExit: (_) => setState(() => _hovering = false),
-      child: GestureDetector(onTap: widget.onTap,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 150),
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          decoration: BoxDecoration(
-            color: widget.color.withOpacity(_hovering ? 0.25 : 0.15),
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: widget.color.withOpacity(_hovering ? 0.6 : 0.3))),
-          child: Row(mainAxisSize: MainAxisSize.min, children: [
-            Icon(Icons.shopping_bag_outlined, color: widget.color, size: 14),
-            const SizedBox(width: 4),
-            Text(widget.label, style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w600, color: widget.color)),
-          ]))));
   }
 }
 
