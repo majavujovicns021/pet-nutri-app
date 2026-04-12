@@ -136,7 +136,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ).animate().fadeIn(duration: 500.ms).slideY(begin: -0.15, end: 0),
 
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 12),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(16),
+                          child: Image.asset('assets/images/banner.png',
+                            width: double.infinity,
+                            height: 80,
+                            fit: BoxFit.cover)),
+                        const SizedBox(height: 16),
 
                         // Provera simptoma
                         HoverEffect(
