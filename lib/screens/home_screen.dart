@@ -96,6 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         // Header
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             GestureDetector(
                               onTap: () => Navigator.of(context).popUntil((route) => route.isFirst),
@@ -103,42 +104,42 @@ class _HomeScreenState extends State<HomeScreen> {
                                 cursor: SystemMouseCursors.click,
                                 child: Row(mainAxisSize: MainAxisSize.min, children: [
                                   ClipRRect(
-                                    borderRadius: BorderRadius.circular(12),
-                                    child: Image.asset('assets/images/logo.png', width: 48, height: 48),
+                                    borderRadius: BorderRadius.circular(14),
+                                    child: Image.asset('assets/images/logo.png', width: 56, height: 56),
                                   ),
                                   const SizedBox(width: 12),
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(l.appTitle, style: GoogleFonts.inter(fontSize: 28, fontWeight: FontWeight.w800, color: Colors.white)),
+                                      Text(l.appTitle, style: GoogleFonts.inter(fontSize: 30, fontWeight: FontWeight.w800, color: Colors.white)),
                                       const SizedBox(height: 2),
-                                      Text(l.appSubtitle, style: GoogleFonts.inter(fontSize: 14, color: Colors.white70)),
+                                      Text(l.appSubtitle, style: GoogleFonts.inter(fontSize: 15, color: Colors.white70)),
                                     ],
                                   ),
                                 ]),
                               ),
                             ),
-                            const SizedBox(width: 8),
+                            const SizedBox(width: 10),
                             Expanded(child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.circular(14),
                               child: SizedBox(
-                                height: 48,
+                                height: 96,
                                 child: FittedBox(
                                   fit: BoxFit.cover,
                                   clipBehavior: Clip.hardEdge,
                                   child: Image.asset('assets/images/banner.png'))))),
-                            const SizedBox(width: 8),
+                            const SizedBox(width: 10),
                             HoverEffect(
                               onTap: () => localeProvider.toggleLocale(),
                               child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                                 decoration: BoxDecoration(
                                   color: Colors.white.withOpacity(0.15),
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(14),
                                   border: Border.all(color: Colors.white.withOpacity(0.3)),
                                 ),
                                 child: Text(lang == 'sr' ? '🇬🇧 EN' : '🇷🇸 SR',
-                                  style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w700, color: Colors.white)),
+                                  style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w700, color: Colors.white)),
                               ),
                             ),
                           ],
